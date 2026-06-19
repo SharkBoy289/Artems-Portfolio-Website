@@ -1,0 +1,145 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import StatusBadge from "../../components/StatusBadge.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { title, summary, status, year, tags, cover, repo, demo } = project.data;
+---
+
+<Layout title={`${title} — Artem Zagaynov`} description={summary}>
+  <article class="container-page py-16 sm:py-24">
+    <a
+      href="/projects"
+      class="mb-8 inline-flex items-center gap-1 text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-fg)]"
+    >
+      ← Back to projects
+    </a>
+
+    <header class="mb-10 max-w-3xl">
+      <div class="flex flex-wrap items-center gap-3">
+        <StatusBadge status={status} />
+        <span class="text-sm text-[var(--color-faint)]">{year}</span>
+      </div>
+      <h1 class="section-heading mt-4 text-4xl sm:text-5xl">{title}</h1>
+      <p class="mt-4 text-lg text-[var(--color-muted)]">{summary}</p>
+
+      {
+        (repo || demo) && (
+          <div class="mt-6 flex flex-wrap gap-3">
+            {demo && (
+              <a href={demo} class="btn-primary" target="_blank" rel="noopener">
+                Live demo
+              </a>
+            )}
+            {repo && (
+              <a
+                href={repo}
+                target="_blank"
+                rel="noopener"
+                class="rounded-full px-6 py-3 font-semibold ring-1 ring-[var(--color-border)] transition-colors hover:ring-[var(--color-accent)]"
+              >
+                View code
+              </a>
+            )}
+          </div>
+        )
+      }
+
+      {
+        tags && tags.length > 0 && (
+          <ul class="mt-6 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <li class="rounded-md bg-[var(--color-surface-2)] px-2.5 py-1 text-xs text-[var(--color-muted)]">
+                {tag}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+
+    {
+      cover && (
+        <img
+          src={cover}
+          alt={`${title} cover`}
+          width="800"
+          height="450"
+          class="mb-12 w-full rounded-[var(--radius-card)] border border-[var(--color-border)]"
+        />
+      )
+    }
+
+    <div
+      class="prose-portfolio max-w-3xl text-[var(--color-muted)] leading-relaxed"
+    >
+      <Content />
+    </div>
+  </article>
+</Layout>
+
+<style is:global>
+  /* Lightweight prose styling for MDX bodies */
+  .prose-portfolio h2 {
+    color: var(--color-fg);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .prose-portfolio p {
+    margin-bottom: 1.25rem;
+  }
+  .prose-portfolio ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .prose-portfolio a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-portfolio a:hover {
+    color: var(--color-accent-hover);
+  }
+  .prose-portfolio code {
+    background: var(--color-surface-2);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  .prose-portfolio strong {
+    color: var(--color-fg);
+  }
+  .prose-portfolio table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    font-size: 0.95em;
+  }
+  .prose-portfolio th,
+  .prose-portfolio td {
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+  .prose-portfolio th {
+    color: var(--color-fg);
+    background: var(--color-surface-2);
+  }
+</style>

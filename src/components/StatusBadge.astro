@@ -1,0 +1,24 @@
+---
+interface Props {
+  status: "shipped" | "in-progress" | "experiment";
+}
+const { status } = Astro.props;
+
+const map = {
+  shipped: { label: "Shipped", cls: "text-emerald-400 ring-emerald-500/40 bg-emerald-500/10" },
+  "in-progress": { label: "In progress", cls: "text-amber-400 ring-amber-500/40 bg-amber-500/10" },
+  experiment: { label: "Placeholder", cls: "text-zinc-400 ring-zinc-500/40 bg-zinc-500/10" },
+} as const;
+
+const { label, cls } = map[status];
+---
+
+<span
+  class:list={[
+    "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium ring-1",
+    cls,
+  ]}
+>
+  <span class="h-1.5 w-1.5 rounded-full bg-current"></span>
+  {label}
+</span>

@@ -1,0 +1,43 @@
+---
+title: Job Dashboard
+summary: A self-hosted job-application tracker that ingests recruiter email, classifies each message with Claude, and surfaces your pipeline in a native macOS desktop widget.
+status: shipped
+year: "2026"
+tags: ["Python", "Claude / LLM", "MCP", "SQLite", "macOS / Swift", "Google APIs"]
+featured: true
+cover: "/projects/job-dashboard.svg"
+order: 1
+---
+
+## What it does
+
+Job Dashboard turns the chaos of a job search into a single, always-visible
+pipeline. Recruiter and ATS email (Greenhouse, Lever, Ashby, Workday, …) is
+labelled in Gmail, picked up by a scheduled pipeline, and **classified by
+Claude with structured output** into a clean set of stages:
+
+`planned → applied → screen → technical_interview → personal_interview → offer | rejected | ghosted`
+
+Interviews are pushed to Google Calendar automatically. Every stage change is
+recorded as an event, feeding live stats — response rate, apps this week,
+average days to first response, in-flight count — onto an **extra-large macOS
+desktop widget** and a native app.
+
+## How it's built
+
+- **Ingestion pipeline** (Python, launchd every 3h) reads labelled Gmail,
+  sends each email to **Claude (Opus) with a structured-output schema**, and
+  upserts results into SQLite — with logic that never regresses a stage and
+  auto-derives "ghosted" after 21 quiet days.
+- **MCP server** lets me add and move applications by hand straight from
+  Claude Desktop.
+- **Google Calendar integration** creates interview events.
+- **macOS app + widget** render the pipeline, post notifications on stage
+  changes, and allow moving applications between stages.
+
+## Why it matters
+
+It's a real, multi-component system: an event-sourced data model, an LLM in
+the classification loop, OAuth integrations, a background scheduler, and a
+native client. It's the project I reach for when someone asks what I can
+actually ship end-to-end.

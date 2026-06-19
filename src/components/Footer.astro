@@ -1,0 +1,10 @@
+---
+const year = Astro.props.year ?? "2026";
+---
+
+<footer class="border-t border-[var(--color-border)] mt-24">
+  <div class="container-page flex flex-col gap-2 py-8 text-sm text-[var(--color-faint)] sm:flex-row sm:items-center sm:justify-between">
+    <p>&copy; {year} Artem Zagaynov.</p>
+    <p>Built with Astro. Designed &amp; coded from scratch.</p>
+  </div>
+</footer>

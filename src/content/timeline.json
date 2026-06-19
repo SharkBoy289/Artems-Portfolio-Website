@@ -1,0 +1,42 @@
+[
+  {
+    "id": "agricola-online",
+    "year": "2026",
+    "title": "Agricola Online",
+    "subtitle": "Multiplayer board game platform — Go, WebSockets, Redis, Kubernetes",
+    "status": "in-progress",
+    "sort": 100
+  },
+  {
+    "id": "job-dashboard",
+    "year": "2026",
+    "title": "Job Dashboard",
+    "subtitle": "AI-powered job-application tracker with a native macOS widget",
+    "status": "shipped",
+    "sort": 90
+  },
+  {
+    "id": "gym-coach",
+    "year": "2026",
+    "title": "Gym Coach App",
+    "subtitle": "Adaptive personal training companion — a tool I build for myself",
+    "status": "in-progress",
+    "sort": 85
+  },
+  {
+    "id": "personal-projects",
+    "year": "2024–2025",
+    "title": "Personal Projects Collection",
+    "subtitle": "14+ self-directed builds across web, AI, and graphics",
+    "status": "shipped",
+    "sort": 80
+  },
+  {
+    "id": "placeholder-1",
+    "year": "2024",
+    "title": "More coming soon",
+    "subtitle": "A slot reserved for the next project worth showing",
+    "status": "experiment",
+    "sort": 10
+  }
+]

@@ -1,0 +1,87 @@
+---
+const links = [
+  { href: "/about", label: "About Me" },
+  { href: "/projects", label: "Projects" },
+  { href: "/timeline", label: "Timeline" },
+  { href: "/contact", label: "Contact" },
+];
+
+// Active-link detection based on current path.
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path.startsWith(href);
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-surface)]/80 backdrop-blur-md"
+>
+  <nav
+    class="container-page flex h-16 items-center justify-between"
+    aria-label="Primary"
+  >
+    <a
+      href="/"
+      class="text-lg font-bold tracking-tight text-[var(--color-accent)] transition-colors hover:text-[var(--color-accent-hover)]"
+    >
+      Artem
+    </a>
+
+    <div class="flex items-center gap-1 sm:gap-2">
+      <button
+        id="theme-toggle"
+        type="button"
+        class="mr-1 grid h-9 w-9 place-items-center rounded-lg text-[var(--color-amber)] transition-colors hover:bg-[var(--color-surface-2)]"
+        aria-label="Toggle color theme"
+      >
+        <!-- moon (dark) -->
+        <svg class="theme-icon-dark h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+        <!-- sun (light) -->
+        <svg class="theme-icon-light hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+        </svg>
+      </button>
+
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              "rounded-lg px-3 py-1.5 text-sm font-medium transition-colors",
+              isActive(link.href)
+                ? "text-[var(--color-fg)] ring-1 ring-[var(--color-accent)]"
+                : "text-[var(--color-muted)] hover:text-[var(--color-fg)]",
+            ]}
+            aria-current={isActive(link.href) ? "page" : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  // Theme toggle — set before paint via Layout's inline head script to avoid FOUC.
+  const btn = document.getElementById("theme-toggle");
+  btn?.addEventListener("click", () => {
+    const root = document.documentElement;
+    const next =
+      root.getAttribute("data-theme") === "light" ? "dark" : "light";
+    root.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+    syncIcons(next);
+  });
+  function syncIcons(theme) {
+    const dark = document.querySelector(".theme-icon-dark");
+    const light = document.querySelector(".theme-icon-light");
+    if (!dark || !light) return;
+    const isLight = theme === "light";
+    dark.classList.toggle("hidden", isLight);
+    light.classList.toggle("hidden", !isLight);
+  }
+  syncIcons(document.documentElement.getAttribute("data-theme") || "dark");
+</script>

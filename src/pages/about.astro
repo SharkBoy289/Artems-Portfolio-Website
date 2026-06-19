@@ -1,0 +1,96 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+const testimonials = await getCollection("testimonials");
+
+const services = [
+  { title: "Web Development", body: "Full-stack applications and APIs." },
+  { title: "AI Integration", body: "LLM-powered features and tooling." },
+  { title: "Systems & Tooling", body: "Automation that makes work seamless." },
+];
+
+const process = [
+  { title: "Discover", body: "Research, gather requirements, and define scope." },
+  { title: "Build", body: "Iterate quickly with rapid prototypes." },
+  { title: "Launch", body: "Deploy, monitor, and continuously improve." },
+];
+---
+
+<Layout title="About — Artem Zagaynov">
+  <section class="container-page py-16 sm:py-24">
+    <!-- Intro -->
+    <div class="flex flex-col items-start gap-8 sm:flex-row sm:items-center">
+      <img
+        src="/photos/artem.jpeg"
+        alt="Artem Zagaynov"
+        width="180"
+        height="180"
+        class="h-44 w-44 shrink-0 rounded-full object-cover ring-1 ring-[var(--color-border)]"
+      />
+      <div>
+        <h1 class="section-heading text-3xl sm:text-4xl">Hi, I'm Artem</h1>
+        <p class="mt-4 max-w-xl text-lg text-[var(--color-muted)]">
+          I'm a developer who loves crafting polished user experiences and
+          solving real-world problems with code — from AI-powered tools to
+          systems that make everyday workflows feel seamless.
+        </p>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <div class="mt-20">
+      <h2 class="section-heading mb-8">What I do</h2>
+      <div class="grid gap-5 sm:grid-cols-3">
+        {
+          services.map((s) => (
+            <div class="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+              <h3 class="text-lg font-semibold">{s.title}</h3>
+              <p class="mt-2 text-sm text-[var(--color-muted)]">{s.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Process -->
+    <div class="mt-20">
+      <h2 class="section-heading mb-8">My Process</h2>
+      <div class="grid gap-5 sm:grid-cols-3">
+        {
+          process.map((p, i) => (
+            <div class="rounded-[var(--radius-card)] border border-[var(--color-border)] p-6">
+              <span class="text-sm font-mono text-[var(--color-accent)]">
+                0{i + 1}
+              </span>
+              <h3 class="mt-2 text-lg font-semibold">{p.title}</h3>
+              <p class="mt-2 text-sm text-[var(--color-muted)]">{p.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="mt-20">
+      <h2 class="section-heading mb-8">Testimonials</h2>
+      <div class="grid gap-6 sm:grid-cols-3">
+        {
+          testimonials.map((t) => (
+            <figure class="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+              <blockquote class="text-sm italic leading-relaxed text-[var(--color-muted)]">
+                “{t.data.quote}”
+              </blockquote>
+              <figcaption class="mt-4 text-sm font-medium text-[var(--color-fg)]">
+                — {t.data.author}
+                {t.data.role && (
+                  <span class="text-[var(--color-faint)]"> · {t.data.role}</span>
+                )}
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
