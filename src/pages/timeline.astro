@@ -18,12 +18,13 @@ const typeClass = {
   project: "text-[var(--color-muted)] ring-[var(--color-border)] bg-[var(--color-surface-2)]",
 } as const;
 
+// Dot color follows the entry TYPE so dots match their category badge.
 const dotClass = (e: (typeof entries)[number]) =>
-  e.data.status === "in-progress"
-    ? "bg-[var(--color-accent)]"
-    : e.data.type === "education"
-      ? "bg-sky-400"
-      : "bg-[var(--color-fg)]";
+  ({
+    work: "bg-[var(--color-accent)]",
+    education: "bg-sky-400",
+    project: "bg-[var(--color-muted)]",
+  })[e.data.type];
 ---
 
 <Layout title="Timeline — Artem Zagaynov">
@@ -94,13 +95,14 @@ const dotClass = (e: (typeof entries)[number]) =>
     <!-- ============================================================
          DESKTOP / lg+ : horizontal alternating axis. Cards above/below
          a center line; click a card to open its detail modal.
-         DOM order stays chronological (a11y); only visuals alternate.
+         Reads left → right oldest → newest, so the axis sorts ascending
+         (opposite of the "most recent first" mobile list above).
          ============================================================ -->
     <ol class="relative hidden lg:flex lg:items-stretch">
       <!-- center axis line -->
       <span class="pointer-events-none absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-[var(--color-border)]" aria-hidden="true"></span>
       {
-        entries.map((e, i) => {
+        [...entries].reverse().map((e, i) => {
           const above = i % 2 === 0;
           return (
             <li class="flex flex-1 flex-col px-2">
@@ -171,7 +173,7 @@ const dotClass = (e: (typeof entries)[number]) =>
     type="application/json"
     id="timeline-data"
     set:html={JSON.stringify(
-      entries.map((e) => ({
+      [...entries].reverse().map((e) => ({
         type: e.data.type,
         typeLabel: typeLabel[e.data.type],
         typeClass: typeClass[e.data.type],

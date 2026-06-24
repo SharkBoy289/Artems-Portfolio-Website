@@ -56,6 +56,12 @@ to take it from "functional" to "polished product." Grouped by priority.
       contrast in BOTH themes, alt text everywhere, keyboard-only pass.
 - [ ] **Custom domain** — buy artemzagaynov.com / .dev, point at Vercel, update
       `site:` in astro.config. *(Cheapest credibility upgrade before sharing.)*
+- [x] **Security headers** — `vercel.json` adds CSP, HSTS, X-Frame-Options,
+      nosniff, Referrer-Policy, Permissions-Policy. Applies on Vercel deploy.
+- [ ] **Cover images for new projects** — meos, web-scraper, solar-system,
+      digital-po-box render coverless for now (degrade gracefully). Add covers in
+      `/public/projects/`; a MeOS network-graph screenshot + Solar-system render
+      are the strongest visuals.
 - [ ] **Analytics** (privacy-friendly: Vercel Analytics or Plausible).
 - [ ] **OG image** — ✅ done (public/og.png). Verify preview renders after deploy.
 

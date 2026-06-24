@@ -1,0 +1,44 @@
+---
+title: Full-Stack Web Scraper
+summary: A full-stack app that scrapes creator profiles from the live web with a headless browser, persists them through an ORM to a relational database, and serves them over a REST API to a lightweight frontend.
+status: shipped
+year: "2024"
+tags: ["Node.js", "Express", "Puppeteer", "TypeORM", "MySQL", "REST API"]
+featured: false
+order: 4
+---
+
+## The problem
+
+I wanted to pull structured data — creator name and avatar — straight off live
+web pages and keep my own database of it, rather than copying things by hand. The
+interesting part isn't any single piece; it's wiring the whole chain together:
+**scrape → persist → serve → render.**
+
+## What's technically interesting
+
+- **Headless-browser scraping.** A `Puppeteer` script launches a headless
+  Chromium, navigates to a creator's page, and extracts the name and avatar by
+  resolving **XPath** queries against the live DOM — the realistic way to scrape
+  a modern, JS-rendered site rather than a static HTML fetch.
+- **An ORM-backed data layer.** A `TypeORM` entity schema models the `Creator`
+  record and maps it to a **MySQL** table, with repository methods for insert and
+  fetch — so the scraped data lands in a real relational store, not a flat file.
+- **A REST API over the pipeline.** An `Express` server exposes `GET /creators`
+  (list everything) and `POST /creators` (scrape a new channel URL, persist it,
+  return the updated set), with CORS configured for the browser client.
+- **A clear client–server split.** A separate frontend calls the API and renders
+  the collected creators — a genuine multi-tier architecture, not a single
+  script.
+
+## Stack
+
+Node.js + Express REST API · Puppeteer headless scraping · TypeORM entity
+mapping → MySQL · vanilla-JS client.
+
+## What I took from it
+
+This is the project I point to for **backend and full-stack fundamentals**:
+talking to a real database through an ORM, designing API endpoints around a data
+model, and handling the messy reality of scraping a live, JavaScript-rendered
+page.

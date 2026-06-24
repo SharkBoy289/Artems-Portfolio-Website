@@ -1,8 +1,5 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-
-const testimonials = await getCollection("testimonials");
 
 const services = [
   { title: "Web Development", body: "Full-stack applications and APIs." },
@@ -72,28 +69,6 @@ const process = [
               <h3 class="mt-2 text-lg font-semibold">{p.title}</h3>
               <p class="mt-2 text-sm text-[var(--color-muted)]">{p.body}</p>
             </div>
-          ))
-        }
-      </div>
-    </div>
-
-    <!-- Testimonials -->
-    <div class="mt-20" data-reveal>
-      <h2 class="section-heading mb-8">Testimonials</h2>
-      <div class="grid gap-6 sm:grid-cols-3">
-        {
-          testimonials.map((t) => (
-            <figure class="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
-              <blockquote class="text-sm italic leading-relaxed text-[var(--color-muted)]">
-                “{t.data.quote}”
-              </blockquote>
-              <figcaption class="mt-4 text-sm font-medium text-[var(--color-fg)]">
-                — {t.data.author}
-                {t.data.role && (
-                  <span class="text-[var(--color-faint)]"> · {t.data.role}</span>
-                )}
-              </figcaption>
-            </figure>
           ))
         }
       </div>

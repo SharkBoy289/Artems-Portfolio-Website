@@ -1,0 +1,40 @@
+---
+title: Digital PO Box
+summary: An Angular 18 application with server-side rendering and standalone login/register components — built to get hands-on with enterprise-style frontend architecture and SSR.
+status: in-progress
+year: "2024"
+tags: ["Angular 18", "TypeScript", "SSR", "Express", "RxJS"]
+featured: false
+order: 6
+---
+
+## The problem
+
+Most of my web work is in React-family stacks, so I built this to get real
+experience with **Angular** — the framework a lot of enterprise teams actually
+run — and specifically with **server-side rendering**, which changes how an app
+is structured and shipped.
+
+## What's technically interesting
+
+- **Angular 18 with standalone components.** The app uses the modern
+  standalone-component model (no NgModules), with dedicated `login` and
+  `register` components and a typed routing setup.
+- **Server-side rendering out of the box.** Configured with `@angular/ssr` and an
+  **Express** server entry, so pages render on the server first — a meaningfully
+  different build and runtime model than a pure SPA.
+- **TypeScript end to end** with `RxJS` for reactive data flow, the idiomatic
+  Angular way to handle async streams.
+- **Testing scaffolding in place.** Karma + Jasmine are wired up, reflecting how
+  Angular projects are tested in practice.
+
+## Stack
+
+Angular 18 (standalone components) · TypeScript · `@angular/ssr` + Express ·
+RxJS · Karma / Jasmine.
+
+## What I took from it
+
+Deliberate **breadth**: getting fluent in a second major frontend ecosystem and
+understanding SSR from the framework's perspective, not just Next.js's. It
+complements the React/Astro work elsewhere in this portfolio.

@@ -2,12 +2,11 @@ import { defineCollection, z } from "astro:content";
 import { glob, file } from "astro/loaders";
 
 /**
- * Content collections power the Projects, Timeline, and Testimonials sections.
+ * Content collections power the Projects and Timeline sections.
  * Editing content = editing these files only; layout never changes.
  *
  * - projects   → MDX case studies (rich body) in src/content/projects/
  * - timeline   → JSON array of career/project milestones
- * - testimonials → JSON array of REAL testimonials (permission granted)
  */
 
 const projects = defineCollection({
@@ -54,14 +53,4 @@ const timeline = defineCollection({
   }),
 });
 
-const testimonials = defineCollection({
-  loader: file("./src/content/testimonials.json"),
-  schema: z.object({
-    id: z.string(),
-    quote: z.string(),
-    author: z.string(),
-    role: z.string().optional(),
-  }),
-});
-
-export const collections = { projects, timeline, testimonials };
+export const collections = { projects, timeline };
