@@ -6,6 +6,12 @@
 
 ## ⭐ NEXT UP: "My Developer Team" — AI idea-to-project pipeline
 
+> 📦 **MOVED TO ITS OWN REPO (2026-06-23):**
+> `~/Development/Repos/my-developer-team` — see its `docs/SPEC.md` and
+> `docs/research-2026.md` (full deep-research report) for the live source of
+> truth. The summary below is kept here as a roadmap pointer. Start new work in
+> that repo's own Claude Code session.
+
 The project to build right after the portfolio. An AI "developer team" dashboard
 (same lineage as Job Dashboard) that **generates product ideas, lets Artem
 approve/edit them, then assists in building the approved ones — with a widget
