@@ -4,6 +4,51 @@
 > Primary motivation (stated): **tools I'll use daily** — usefulness first.
 > (These also happen to age best and impress recruiters as a side effect.)
 
+## ⭐ NEXT UP: "My Developer Team" — AI idea-to-project pipeline
+
+The project to build right after the portfolio. An AI "developer team" dashboard
+(same lineage as Job Dashboard) that **generates product ideas, lets Artem
+approve/edit them, then assists in building the approved ones — with a widget
+tracking each project's progress** (agile board, backlog, % complete). Manage
+many "teams"/projects in parallel.
+
+**The core thesis (the smart part):**
+> Idea quality = (public signals: trending GitHub repos/topics, what people are
+> actually building) **×** (Artem's day-to-day: real friction, calendar, notes).
+> Grounding ideas in real data → novel AND useful combinations, not generic slop.
+> "No software is good without useful features" — real signals are how you avoid
+> the feature-less demo.
+
+**Human-in-the-loop is the design, not a compromise:**
+Artem's taste / design sense / product judgment **+** AI's technical execution.
+That combination produces good products; full unattended autonomy does not (yet).
+
+**What's real / buildable today:**
+- ✅ Idea generation on a schedule via the **Claude API** (Job Dashboard pattern).
+- ✅ **GitHub public data** (REST/GraphQL: trending, topics, stars, READMEs) —
+  fully legitimate signal, no ToS issue.
+- ✅ Personal context Artem owns (calendar/notes/friction) as the second input.
+- ✅ Approve/edit/reject queue + DB.
+- ✅ Spec + task breakdown + starter scaffold generation (**Claude Agent SDK**).
+- ✅ Progress-tracking dashboard + widget across many projects (agile/backlog).
+
+**What needs a reality check (→ research before committing):**
+- ⚠️ Fully autonomous "approve → finished, deployed app" is NOT reliable in 2026,
+  even with the best agent frameworks. Keep a human in the loop.
+- ⚠️ "Gstack" couldn't be identified as a real tool; "superpowers" is a community
+  Claude Code plugin not installed in this env; "GSD" is a workflow skill. The
+  build engine must rest on REAL available APIs — the **Claude Agent SDK** + the
+  **Claude API** — not on naming tools that don't exist here.
+
+**Research brief (run with `deep-research` after portfolio deploys):**
+> State of autonomous AI coding agents in 2026 — what the Claude Agent SDK can
+> actually build end-to-end vs. where humans must stay in the loop; and how to
+> build an idea engine that combines public GitHub signals with personal context
+> to produce novel, useful product ideas.
+
+**Why first:** once this pipeline exists, it becomes the factory that helps build
+everything else on this roadmap (Artem OS modules, My Network, the handheld, etc).
+
 ## The durability filter
 
 A personal project ages well when it has these properties:
