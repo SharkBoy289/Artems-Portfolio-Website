@@ -26,7 +26,7 @@ const isActive = (href: string) =>
       Artem
     </a>
 
-    <div class="flex items-center gap-1 sm:gap-2">
+    <div class="flex items-center gap-2 sm:gap-2">
       <!-- Desktop links -->
       <div class="hidden items-center gap-1 sm:flex sm:gap-2">
         {
@@ -52,7 +52,7 @@ const isActive = (href: string) =>
       <button
         id="theme-toggle"
         type="button"
-        class="grid h-9 w-9 place-items-center rounded-lg text-[var(--color-amber)] transition-colors hover:bg-[var(--color-surface-2)]"
+        class="grid h-11 w-11 place-items-center rounded-lg text-[var(--color-amber)] transition-colors hover:bg-[var(--color-surface-2)] sm:h-9 sm:w-9"
         aria-label="Toggle color theme"
       >
         <svg class="theme-icon-dark h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -68,7 +68,7 @@ const isActive = (href: string) =>
       <button
         id="menu-toggle"
         type="button"
-        class="grid h-9 w-9 place-items-center rounded-lg text-[var(--color-fg)] transition-colors hover:bg-[var(--color-surface-2)] sm:hidden"
+        class="grid h-11 w-11 place-items-center rounded-lg text-[var(--color-fg)] transition-colors hover:bg-[var(--color-surface-2)] sm:hidden"
         aria-label="Open menu"
         aria-expanded="false"
         aria-controls="mobile-menu"

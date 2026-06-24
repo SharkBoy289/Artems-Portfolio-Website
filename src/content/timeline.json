@@ -1,7 +1,7 @@
 [
   {
     "id": "heart4victims-qa",
-    "year": "Nov 2024 – Present",
+    "year": "2025 – Present",
     "title": "Integration & QA Engineer — HEART4Victims",
     "subtitle": "VCPMS, a cloud case-management platform helping state agencies process crime-victim compensation claims.",
     "impact": "Why it matters: I own the integration test suites for a real, multi-tenant production system — Playwright E2E across Angular + .NET Core, covering OAuth/JWT auth, document management, and payment integrations, with automated API regression in Azure DevOps CI/CD.",
