@@ -1,6 +1,6 @@
 ---
 title: Agricola Online
-summary: A real-time multiplayer adaptation of the board game Agricola — a Go game server with WebSockets and Redis-backed state, orchestrated on Kubernetes to scale game rooms on demand.
+summary: A real-time multiplayer adaptation of the board game Agricola, built on a Go game server with WebSockets and Redis-backed state and orchestrated on Kubernetes to scale game rooms on demand.
 status: in-progress
 year: "2026"
 tags: ["Go", "WebSockets", "Redis", "Kubernetes", "Docker", "Microservices"]
@@ -12,7 +12,7 @@ order: 2
 ## The problem
 
 Agricola is a turn-based worker-placement game for up to five players. I wanted
-to learn distributed systems on a problem that **genuinely needs** them — not a
+to learn distributed systems on a problem that **genuinely needs** them, not a
 toy that's containerized for show. A session-based, room-per-match game is
 exactly that problem.
 
@@ -20,16 +20,16 @@ exactly that problem.
 
 - **A concurrency model that fits.** One goroutine drives the authoritative
   game loop per active room, with channels for player actions and broadcasts
-  for state changes — the kind of workload Go is built for.
+  for state changes. It's the kind of workload Go is built for.
 - **A real rules engine.** Agricola's worker placement, resource economy,
   harvest phases, and end-game scoring are modelled as a **state machine** with
-  pure transition functions (`apply(action, state) → state`) — easy to test,
-  easy to snapshot.
+  pure transition functions (`apply(action, state) → state`), making it easy to
+  test and easy to snapshot.
 - **State that survives pod churn.** Game state is snapshotted to **Redis**
   after each committed turn, so any pod can serve a room and reconnections
   survive a restart.
 - **Orchestration with a reason to exist.** Game-server pods scale
-  **horizontally** on Kubernetes with player demand — the orchestration earns
+  **horizontally** on Kubernetes with player demand. The orchestration earns
   its place because the workload is naturally many independent sessions.
 
 ## Stack

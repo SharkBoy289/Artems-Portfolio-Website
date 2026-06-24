@@ -107,7 +107,7 @@ const isActive = (href: string) =>
 </header>
 
 <script is:inline>
-  // Theme toggle — set before paint via Layout's inline head script to avoid FOUC.
+  // Theme toggle. Set before paint via Layout's inline head script to avoid FOUC.
   const btn = document.getElementById("theme-toggle");
   btn?.addEventListener("click", () => {
     const root = document.documentElement;

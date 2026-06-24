@@ -1,6 +1,6 @@
 ---
 title: Slipway
-summary: A scheduled idea-to-product pipeline that proposes software worth building from new tech releases and your personal context, then orchestrates a virtual dev team to build it — with a QA-grade verification gate that proves the work was done correctly before anything ships.
+summary: A scheduled idea-to-product pipeline that proposes software worth building from new tech releases and your personal context, then orchestrates a virtual dev team to build it behind a QA-grade verification gate that proves the work was done correctly before anything ships.
 status: in-progress
 year: "2026"
 tags: ["Claude Agent SDK", "Claude / LLM", "QA / Verification", "DevOps", "Orchestration"]
@@ -11,8 +11,8 @@ order: 1
 ## The idea
 
 Slipway is a **cron-driven idea producer and orchestrator**. On a schedule it
-watches what's new — recent tech releases, what people are building, trending
-work — and combines that with the user's **personal context** to surface
+watches what's new (recent tech releases, what people are building, trending
+work) and combines that with the user's **personal context** to surface
 software it thinks is worth building. It doesn't just list ideas; it **rates
 them**, and for the ones the user approves it orchestrates a virtual dev team to
 actually build them.
@@ -25,29 +25,29 @@ of generic AI slop.
 ## The real differentiator: verification
 
 The orchestration widget is the part everyone is racing to build, and it's
-commoditizing fast. **The defensible part of Slipway is the verification layer** —
-and that's the part I'm uniquely positioned to build, because it comes directly
+commoditizing fast. **The defensible part of Slipway is the verification layer.**
+That's the part I'm uniquely positioned to build, because it comes directly
 out of my year working as a **QA / integration engineer** on a real production
 system.
 
 The research bears this out: AI coding agents do real work but are
 **systematically overconfident and can't certify their own "done."** Trust, not
-raw capability, is what gates adoption — most teams pilot agents but very few
+raw capability, is what gates adoption. Most teams pilot agents but very few
 actually ship their output. So Slipway is built around a hard rule: **never
 auto-ship.** Every unit of work has to pass through a gate before a human sees it.
 
-That gate produces a **Proof of Work** — a signed, reviewable bundle that answers
+That gate produces a **Proof of Work**, a signed, reviewable bundle that answers
 one question: *did the agent do what it claimed, correctly, and can I verify that
 without redoing it?* It packages the raw test output, the exact diff, labeled
 before/after screenshots of the behavior that was exercised, the commands the
 agent actually ran with exit codes, independent check results, and provenance
-(model, prompt hash, git SHA) — so a reviewer can say yes fast, drift gets caught
+(model, prompt hash, git SHA). A reviewer can say yes fast, drift gets caught
 before it ships, and the whole thing survives later as an audit trail.
 
 ## Full visibility into the dev team
 
 Because I think in terms of DevOps and QA, Slipway is built so you can **see the
-progress of a virtual dev team at every level** — from the high-level agile board
+progress of a virtual dev team at every level**, from the high-level agile board
 and backlog across many projects in parallel, down to the per-task proof of what
 was built and whether it passed its gate. Progress isn't a vibe; it's evidence
 you can inspect.
@@ -56,13 +56,13 @@ you can inspect.
 
 The verification layer is designed to stand on its own. The ambition: get it to
 **enterprise grade and offer it as the trust/verification substrate other systems
-plug into** — the logging, proof, and verification gate for AI-built software when
+plug into**: the logging, proof, and verification gate for AI-built software when
 a team doesn't have its own. The pipeline that builds products becomes the
 standard for proving that AI-built work is actually correct and safe to ship.
 
 ## Where it is now
 
-Planning and design stage — the architecture, the verification-gate design, and
+Planning and design stage. The architecture, the verification-gate design, and
 the Proof-of-Work artifact format are specced out (grounded in a full research
 pass on agent autonomy and where humans must stay in the loop). The honest status:
 the concept and the verification design are real and detailed; the build is next.

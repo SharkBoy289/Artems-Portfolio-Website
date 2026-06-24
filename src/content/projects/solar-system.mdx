@@ -1,6 +1,6 @@
 ---
 title: 3D Solar System
-summary: An interactive 3D solar system rendered in the browser with Three.js — a textured sun and four planets orbiting at differentiated speeds, with live GUI controls to toggle each one.
+summary: An interactive 3D solar system built in Three.js, featuring a textured sun and four planets orbiting at different speeds with live GUI controls to toggle each one.
 status: shipped
 year: "2024"
 tags: ["Three.js", "WebGL", "Next.js", "React", "3D Graphics"]
@@ -19,13 +19,13 @@ has to stay smooth.
 
 - **A real Three.js scene graph.** The sun, four planets, and their orbital
   systems are organized as nested `THREE.Group`s, so rotating a parent group
-  carries its planet around the sun — the classic, correct way to model orbits
-  with a scene graph.
+  carries its planet around the sun. This is the classic, correct way to model
+  orbits with a scene graph.
 - **Differentiated orbital motion.** Each planet orbits at a different speed
   derived from an `EARTH_YEAR` constant (Mercury fastest, Mars slowest), driven
   by a `requestAnimationFrame` loop targeting 60fps.
 - **Reusable OOP abstractions.** `Planet` and `Rotation` classes encapsulate
-  geometry, texture loading, and spin, so adding a body is a couple of lines —
+  geometry, texture loading, and spin, so adding a body is a couple of lines and
   the renderer code stays clean.
 - **Live controls.** A `dat.gui` panel toggles the visibility of each planet's
   orbit at runtime, making the scene something you explore, not just watch.

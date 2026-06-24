@@ -1,6 +1,6 @@
 ---
-title: MeOS — Personal Data OS
-summary: A local-first hub that aggregates the data from my own life into one place, visualizes it, and puts an LLM in the loop to make sense of it — with an interactive personal-network graph as the centerpiece.
+title: "MeOS: Personal Data OS"
+summary: A local-first hub that aggregates the data from my own life into one place, visualizes it, and puts an LLM in the loop to make sense of it, built around an interactive personal-network graph as the centerpiece.
 status: in-progress
 year: "2026"
 tags: ["TypeScript", "Three.js / D3", "Claude / LLM", "Local-first", "Data viz"]
@@ -12,14 +12,15 @@ order: 0
 
 Most of my data lives scattered across apps that don't talk to each other and
 that I don't really own. MeOS is the system I'm building to fix that for myself:
-a **local-first hub** that pulls in data I legitimately own — contacts, calendar,
-notes, and my own platform exports — aggregates it in one place, visualizes it,
-and keeps an **LLM in the loop** to summarize and route what matters.
+a **local-first hub** that pulls in data I legitimately own, including contacts,
+calendar, notes, and my own platform exports. It aggregates everything in one
+place, visualizes it, and keeps an **LLM in the loop** to summarize and route
+what matters.
 
 The design goal is honest ownership: my data plus a local store that outlives any
 cloud vendor, built as composable **modules** so it grows over time. Existing
-tools I've built — a job tracker, a training coach — are early modules of this
-same system.
+tools I've built, like a job tracker and a training coach, are early modules of
+this same system.
 
 ## The centerpiece: a personal-network graph
 
@@ -29,7 +30,7 @@ connect.** Each node is a person, with notes on how I know them, last contact,
 and shared context; edges are the relationships between them. You can drag,
 zoom, and explore the graph in real time.
 
-Crucially, it's populated only from **data I own and consent to** — my own
+Crucially, it's populated only from **data I own and consent to**: my own
 contacts and my own platform "download your data" exports. It deliberately does
 *not* scrape anyone else's hidden social-graph data; that's fenced off both
 legally and on principle.
@@ -37,19 +38,20 @@ legally and on principle.
 ## What's technically interesting
 
 - **A real-time force-directed graph** rendered in the browser, built to stay
-  smooth as the node count grows — the kind of data-heavy, interactive visual
-  that's genuinely hard to make feel good.
+  smooth as the node count grows. It's the kind of data-heavy, interactive
+  visual that's genuinely hard to make feel good.
 - **An LLM as connective tissue.** A universal capture box where any note or
   link is routed by Claude to the right module, plus a daily one-page brief
-  assembled across modules — structured-output calls, not free-text guesswork.
+  assembled across modules. These are structured-output calls, not free-text
+  guesswork.
 - **Local-first by design.** The data model is owned and stored locally so the
   system doesn't depend on a vendor staying alive.
-- **A modular architecture** — each life area is a module behind a shared shell,
+- **A modular architecture.** Each life area is a module behind a shared shell,
   so the system composes instead of becoming one monolith.
 
 ## Where it is now
 
 In progress, and honest about it: the **network-graph module works** and is the
 piece I demo. The aggregation pipeline and the cross-module daily brief are
-actively being built out. I'm the demanding first user — which is exactly why it
+actively being built out. I'm the demanding first user, which is exactly why it
 keeps getting better.

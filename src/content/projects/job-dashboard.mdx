@@ -15,13 +15,13 @@ order: 3
 A job search generates a flood of email across a dozen ATS platforms
 (Greenhouse, Lever, Ashby, Workday…). Keeping a spreadsheet current by hand is
 tedious and always out of date. I wanted a system that watched my inbox and
-kept an accurate pipeline for me — with zero manual data entry.
+kept an accurate pipeline for me, with zero manual data entry.
 
 ## What's technically interesting
 
 - **An LLM in the classification loop.** Each labelled email is sent to
   **Claude with a structured-output schema**, returning a typed result rather
-  than free text — so the pipeline can trust and act on it programmatically.
+  than free text, so the pipeline can trust and act on it programmatically.
 - **An event-sourced data model.** Every stage change is recorded as an event.
   The upsert logic **never regresses a stage** and **auto-derives "ghosted"**
   after 21 quiet days. Stats (response rate, average days to first response,
@@ -41,7 +41,7 @@ SwiftUI macOS app + widget.
 
 ## Outcome
 
-A genuinely useful tool I run every day — and the project I point to when
+A genuinely useful tool I run every day. It's also the project I point to when
 someone asks what I can ship end-to-end. It touches data modelling, an AI
 integration, OAuth, background scheduling, and native UI in one coherent
 system.

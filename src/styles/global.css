@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Design tokens — "Warm Slate + Amber".
+   Design tokens - "Warm Slate + Amber".
    Warm charcoal-slate base (not flat black) with layered surfaces
    for depth, and a warm amber accent (distinctive, not dev-blue).
    Tailwind v4 @theme exposes these as utilities (bg-bg, text-fg, etc.)
    ============================================================ */
 @theme {
-  /* DARK (default) — warm charcoal, layered */
+  /* DARK (default) - warm charcoal, layered */
   --color-bg: #0f1115;          /* warm charcoal canvas */
   --color-surface: #171a21;     /* cards, header */
   --color-surface-2: #1f232c;   /* raised / hover surface */
@@ -15,7 +15,7 @@
   --color-fg: #f5f5f4;          /* primary text (warm white) */
   --color-muted: #b3b1ab;       /* secondary text */
   --color-faint: #84817a;       /* tertiary text */
-  --color-accent: #c8825a;      /* muted terracotta — warm but chill */
+  --color-accent: #c8825a;      /* muted terracotta - warm but chill */
   --color-accent-hover: #d99873;
   --color-accent-soft: rgba(200, 130, 90, 0.13); /* tinted fills */
   --color-amber: #d99873;       /* soft warm highlight */
@@ -25,7 +25,7 @@
   --radius-card: 0.875rem;
 }
 
-/* LIGHT — warm off-white, layered */
+/* LIGHT - warm off-white, layered */
 :root[data-theme="light"] {
   --color-bg: #faf9f7;          /* warm white canvas */
   --color-surface: #ffffff;     /* cards, header */
@@ -34,7 +34,7 @@
   --color-fg: #1c1917;          /* primary text (warm near-black) */
   --color-muted: #57534e;       /* secondary text */
   --color-faint: #8a857d;       /* tertiary text */
-  --color-accent: #a85d36;      /* deeper terracotta — readable on light */
+  --color-accent: #a85d36;      /* deeper terracotta - readable on light */
   --color-accent-hover: #8f4d2b;
   --color-accent-soft: rgba(168, 93, 54, 0.10);
   --color-amber: #a85d36;
@@ -79,7 +79,7 @@ body {
 }
 
 /* ============================================================
-   Scroll-reveal — elements with [data-reveal] fade/slide in when
+   Scroll-reveal - elements with [data-reveal] fade/slide in when
    they enter the viewport. JS adds .is-visible (see Layout).
    Fails open: if JS is off, content shows (no reveal class applied
    until JS marks the page reveal-ready).
@@ -102,7 +102,7 @@ body {
 }
 
 /* ============================================================
-   Reusable component classes (kept thin — Tailwind utilities
+   Reusable component classes (kept thin - Tailwind utilities
    handle most layout in markup)
    ============================================================ */
 .container-page {

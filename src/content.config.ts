@@ -14,7 +14,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     summary: z.string(),
-    // "shipped" | "in-progress" | "experiment" — drives the status badge
+    // "shipped" | "in-progress" | "experiment" - drives the status badge
     status: z.enum(["shipped", "in-progress", "experiment"]),
     year: z.string(),
     tags: z.array(z.string()).default([]),
@@ -39,7 +39,7 @@ const timeline = defineCollection({
     year: z.string(),
     title: z.string(),
     subtitle: z.string(),
-    // one line on why the work is impressive — the skill/impact, not just the what
+    // one line on why the work is impressive - the skill/impact, not just the what
     impact: z.string(),
     // expanded detail shown when the entry is clicked open (bullet points)
     details: z.array(z.string()).default([]),
@@ -48,7 +48,7 @@ const timeline = defineCollection({
     // distinguishes work history / education from personal projects
     type: z.enum(["work", "education", "project"]).default("project"),
     status: z.enum(["shipped", "in-progress", "experiment"]).default("shipped"),
-    // sort key — higher = more recent (rendered most-recent-first)
+    // sort key - higher = more recent (rendered most-recent-first)
     sort: z.number(),
   }),
 });

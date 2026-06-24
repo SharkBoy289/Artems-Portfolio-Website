@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-// Real links — update handles as needed.
+// Real links. Update handles as needed.
 const socials = [
   {
     label: "Email",
@@ -21,7 +21,7 @@ const socials = [
 ];
 ---
 
-<Layout title="Contact — Artem Zagaynov">
+<Layout title="Contact | Artem Zagaynov">
   <section class="container-page py-16 sm:py-24">
     <div class="grid gap-12 sm:grid-cols-2">
       <!-- Working form via Web3Forms (no backend; AJAX submit).
@@ -135,7 +135,7 @@ const socials = [
       });
       const json = await res.json();
       if (json.success) {
-        status.textContent = "Thanks — your message was sent. I'll get back to you soon.";
+        status.textContent = "Thanks, your message was sent. I'll get back to you soon.";
         status.style.color = "var(--color-accent)";
         form.reset();
       } else {
