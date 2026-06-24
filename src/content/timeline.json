@@ -5,6 +5,12 @@
     "title": "Integration & QA Engineer — HEART4Victims",
     "subtitle": "VCPMS, a cloud case-management platform helping state agencies process crime-victim compensation claims.",
     "impact": "Why it matters: I own the integration test suites for a real, multi-tenant production system — Playwright E2E across Angular + .NET Core, covering OAuth/JWT auth, document management, and payment integrations, with automated API regression in Azure DevOps CI/CD.",
+    "details": [
+      "Developed and maintained integration test suites using Playwright to validate API integrations across multi-tenant Angular applications and .NET Core backend services.",
+      "Implemented end-to-end testing for critical workflows: authentication (OAuth/JWT), document management, and payment system integrations.",
+      "Created automated regression testing for RESTful API endpoints, ensuring data integrity across system integrations.",
+      "Used Azure DevOps Pipelines for CI/CD automated testing and release management."
+    ],
     "stack": ["Playwright", ".NET Core", "Angular", "Azure DevOps", "OAuth/JWT"],
     "type": "work",
     "status": "in-progress",
@@ -16,6 +22,12 @@
     "title": "Agricola Online",
     "subtitle": "Real-time multiplayer adaptation of the board game Agricola.",
     "impact": "Why it matters: a turn-based, room-per-match game is a genuine reason to reach for distributed systems — Go goroutines per game loop, WebSocket state sync, and Kubernetes that scales game servers with demand.",
+    "details": [
+      "Go game server: one goroutine-driven game loop per room, WebSocket fan-out for live turn updates.",
+      "Rules engine modelled as a state machine with pure transition functions — testable and snapshot-friendly.",
+      "Redis-backed room state so any pod can serve a room and reconnections survive restarts.",
+      "Kubernetes HPA scales game-server pods with player demand. Full spec in docs/agricola-architecture.md."
+    ],
     "stack": ["Go", "WebSockets", "Redis", "Kubernetes"],
     "type": "project",
     "status": "in-progress",
@@ -27,6 +39,12 @@
     "title": "Job Dashboard",
     "subtitle": "Self-hosted job tracker: Gmail in, Claude classification, native macOS widget out.",
     "impact": "Why it matters: a complete system — an LLM in the classification loop with structured output, an event-sourced data model, OAuth integrations, a scheduler, and a native widget. Proof I can ship end-to-end.",
+    "details": [
+      "Python pipeline (launchd, every 3h) classifies labelled Gmail with Claude using structured output.",
+      "Event-sourced SQLite model: never regresses a stage, auto-derives 'ghosted' after 21 quiet days.",
+      "MCP server to add/move applications from Claude Desktop; interviews pushed to Google Calendar.",
+      "Native SwiftUI macOS app + extra-large desktop widget with live pipeline stats."
+    ],
     "stack": ["Python", "Claude / LLM", "MCP", "SQLite", "Swift"],
     "type": "project",
     "status": "shipped",
@@ -38,6 +56,11 @@
     "title": "Full-Stack Intern — Poseidon Aerospace",
     "subtitle": "Startup building unmanned seaplane drones for long-range maritime cargo and defense.",
     "impact": "Why it matters: shipped real flight-software infrastructure — RESTful APIs integrating flight telemetry with central databases, Python telemetry monitoring/automation on Linux (Grafana, Azure Monitor), and Docker + CI/CD for UAV dashboards.",
+    "details": [
+      "Built RESTful APIs to integrate flight telemetry systems with centralized databases (Node.js, Express, SQL).",
+      "Developed Python scripts for telemetry monitoring and automation in Linux environments (Grafana, Azure Monitor).",
+      "Contributed to containerized deployments (Docker) and CI/CD workflows for UAV flight dashboards and APIs."
+    ],
     "stack": ["Node.js", "Express", "SQL", "Python", "Docker", "Grafana"],
     "type": "work",
     "status": "shipped",
@@ -49,6 +72,12 @@
     "title": "Full-Stack Intern — HEART4Victims",
     "subtitle": "Earlier internship on the VCPMS claim-management platform.",
     "impact": "Why it matters: built a step-by-step online claim form with validation (fewer incomplete applications), payment APIs to the state's finance software (removing double entry), a secure SignalR messaging feature, and AWS environments via Terraform IaC.",
+    "details": [
+      "Built an online claim application form that guided users step by step and validated input — result: fewer incomplete applications (ASP.NET Core, Angular, SQL).",
+      "Helped develop APIs to send approved payments to the state's finance software, removing double entry (ASP.NET Core, SQL).",
+      "Added a secure messaging feature for claimants and staff (SignalR).",
+      "Provisioned and maintained AWS environments using Terraform with Infrastructure-as-Code practices."
+    ],
     "stack": ["ASP.NET Core", "Angular", "SQL", "SignalR", "AWS", "Terraform"],
     "type": "work",
     "status": "shipped",
@@ -60,6 +89,10 @@
     "title": "B.S. Computer Science — UC Santa Cruz",
     "subtitle": "Bachelor's degree in Computer Science. GPA 3.5.",
     "impact": "Foundations in algorithms, systems, and software engineering — alongside three concurrent industry roles.",
+    "details": [
+      "B.S. in Computer Science, GPA 3.5.",
+      "Held three concurrent industry roles (two internships + a QA engineering role) while completing the degree."
+    ],
     "stack": [],
     "type": "education",
     "status": "shipped",

@@ -49,6 +49,17 @@ That combination produces good products; full unattended autonomy does not (yet)
 **Why first:** once this pipeline exists, it becomes the factory that helps build
 everything else on this roadmap (Artem OS modules, My Network, the handheld, etc).
 
+**Output → portfolio loop (honesty-first):**
+- When a dev team ships a COMPLETE product, it only counts after Artem's manual
+  checkpoints — security review, reprompt/verify "for peace of mind," final QA.
+- Shipped outputs get listed as **"AI-developed projects" — a SEPARATE category**
+  from Artem's hand-built work. Clear labeling is the credible move: never blur
+  AI-generated work with personal engineering. (A recruiter trusts "here's my
+  work + here's a system that autonomously produces vetted products" far more
+  than disguised auto-work.)
+- The dev team can also **auto-generate each sub-project's preview/launch page
+  and take its own screenshots** for the listing — the pipeline documents itself.
+
 ## The durability filter
 
 A personal project ages well when it has these properties:

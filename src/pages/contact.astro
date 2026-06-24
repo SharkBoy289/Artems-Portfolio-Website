@@ -24,13 +24,15 @@ const socials = [
 <Layout title="Contact — Artem Zagaynov">
   <section class="container-page py-16 sm:py-24">
     <div class="grid gap-12 sm:grid-cols-2">
-      <!-- Form (mailto for v1 — no backend needed; upgrade in Phase 4) -->
-      <form
-        class="flex flex-col gap-4"
-        action="mailto:Artemz@heart4victims.org"
-        method="post"
-        enctype="text/plain"
-      >
+      <!-- Working form via Web3Forms (no backend; AJAX submit).
+           TODO: replace WEB3FORMS_ACCESS_KEY with your real key from web3forms.com -->
+      <form id="contact-form" class="flex flex-col gap-4">
+        <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY" />
+        <input type="hidden" name="subject" value="New message from your portfolio" />
+        <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+        <!-- honeypot anti-spam -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
         <label class="sr-only" for="name">Your name</label>
         <input
           id="name"
@@ -58,7 +60,10 @@ const socials = [
           required
           class="rounded-lg border border-[var(--color-border)] bg-transparent px-4 py-3 text-[var(--color-fg)] placeholder:text-[var(--color-faint)] focus:border-[var(--color-accent)] focus:outline-none"
         ></textarea>
-        <button type="submit" class="btn-primary self-start">Send</button>
+        <button type="submit" id="contact-submit" class="btn-primary self-start">
+          Send
+        </button>
+        <p id="contact-status" class="text-sm" role="status" aria-live="polite"></p>
       </form>
 
       <!-- Info -->
@@ -97,3 +102,51 @@ const socials = [
     </div>
   </section>
 </Layout>
+
+<script is:inline>
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("contact-status");
+  const submit = document.getElementById("contact-submit");
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const key = form.querySelector('[name="access_key"]').value;
+
+    // If the access key hasn't been set yet, fall back to a mailto so the form
+    // is never a dead end.
+    if (key === "WEB3FORMS_ACCESS_KEY") {
+      const data = new FormData(form);
+      const body = encodeURIComponent(
+        `From: ${data.get("name")} <${data.get("email")}>\n\n${data.get("message")}`,
+      );
+      window.location.href = `mailto:Artemz@heart4victims.org?subject=Portfolio%20message&body=${body}`;
+      return;
+    }
+
+    status.textContent = "Sending…";
+    status.style.color = "var(--color-muted)";
+    submit.disabled = true;
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      const json = await res.json();
+      if (json.success) {
+        status.textContent = "Thanks — your message was sent. I'll get back to you soon.";
+        status.style.color = "var(--color-accent)";
+        form.reset();
+      } else {
+        throw new Error(json.message || "Something went wrong.");
+      }
+    } catch (err) {
+      status.textContent =
+        "Sorry, that didn't send. Email me directly at Artemz@heart4victims.org.";
+      status.style.color = "#f87171";
+    } finally {
+      submit.disabled = false;
+    }
+  });
+</script>

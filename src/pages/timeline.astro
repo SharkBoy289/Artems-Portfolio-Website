@@ -25,17 +25,17 @@ const typeClass = {
       <h1 class="section-heading text-4xl sm:text-5xl">Timeline</h1>
       <p class="mt-4 text-lg text-[var(--color-muted)]">
         My experience and projects — work, education, and what I build on the
-        side. Most recent first.
+        side. Click any entry for details. Most recent first.
       </p>
     </header>
 
     <ol class="relative border-l border-[var(--color-border)] pl-8 sm:pl-10">
       {
         entries.map((e) => (
-          <li class="relative mb-12 last:mb-0">
+          <li class="relative mb-6 last:mb-0">
             <span
               class:list={[
-                "absolute top-1.5 grid h-4 w-4 place-items-center rounded-full ring-4 ring-[var(--color-bg)] -left-[2.05rem] sm:-left-[2.55rem]",
+                "absolute top-5 grid h-4 w-4 place-items-center rounded-full ring-4 ring-[var(--color-bg)] -left-[2.05rem] sm:-left-[2.55rem] z-10",
                 e.data.status === "in-progress"
                   ? "bg-[var(--color-accent)]"
                   : e.data.type === "education"
@@ -43,37 +43,70 @@ const typeClass = {
                     : "bg-[var(--color-fg)]",
               ]}
             />
-            <div class="flex flex-wrap items-center gap-2.5">
-              <span
-                class:list={[
-                  "rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1",
-                  typeClass[e.data.type],
-                ]}
-              >
-                {typeLabel[e.data.type]}
-              </span>
-              <span class="font-mono text-sm text-[var(--color-faint)]">
-                {e.data.year}
-              </span>
-            </div>
-            <h3 class="mt-2 text-xl font-semibold text-[var(--color-fg)]">
-              {e.data.title}
-            </h3>
-            <p class="mt-1 text-[var(--color-muted)]">{e.data.subtitle}</p>
-            <p class="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--color-faint)]">
-              {e.data.impact}
-            </p>
-            {
-              e.data.stack.length > 0 && (
-                <ul class="mt-3 flex flex-wrap gap-1.5">
-                  {e.data.stack.map((tech) => (
-                    <li class="rounded-md bg-[var(--color-surface-2)] px-2 py-0.5 text-xs text-[var(--color-muted)]">
-                      {tech}
-                    </li>
-                  ))}
-                </ul>
-              )
-            }
+            <details class="group rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] transition-colors open:border-[var(--color-accent)]/40 hover:border-[var(--color-border)]">
+              <summary class="flex cursor-pointer list-none items-start justify-between gap-4 p-5 [&::-webkit-details-marker]:hidden">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2.5">
+                    <span
+                      class:list={[
+                        "rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1",
+                        typeClass[e.data.type],
+                      ]}
+                    >
+                      {typeLabel[e.data.type]}
+                    </span>
+                    <span class="font-mono text-sm text-[var(--color-faint)]">
+                      {e.data.year}
+                    </span>
+                  </div>
+                  <h3 class="mt-2 text-lg font-semibold text-[var(--color-fg)] sm:text-xl">
+                    {e.data.title}
+                  </h3>
+                  <p class="mt-1 text-sm text-[var(--color-muted)]">
+                    {e.data.subtitle}
+                  </p>
+                </div>
+                <svg
+                  class="mt-1 h-5 w-5 shrink-0 text-[var(--color-faint)] transition-transform duration-200 group-open:rotate-180"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                >
+                  <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </summary>
+
+              <div class="border-t border-[var(--color-border)] px-5 py-5">
+                <p class="text-sm leading-relaxed text-[var(--color-muted)]">
+                  {e.data.impact}
+                </p>
+                {
+                  e.data.details.length > 0 && (
+                    <ul class="mt-4 flex flex-col gap-2">
+                      {e.data.details.map((d) => (
+                        <li class="flex gap-2.5 text-sm leading-relaxed text-[var(--color-faint)]">
+                          <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-[var(--color-accent)]" />
+                          <span>{d}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )
+                }
+                {
+                  e.data.stack.length > 0 && (
+                    <ul class="mt-4 flex flex-wrap gap-1.5">
+                      {e.data.stack.map((tech) => (
+                        <li class="rounded-md bg-[var(--color-surface-2)] px-2 py-0.5 text-xs text-[var(--color-muted)]">
+                          {tech}
+                        </li>
+                      ))}
+                    </ul>
+                  )
+                }
+              </div>
+            </details>
           </li>
         ))
       }

@@ -42,6 +42,8 @@ const timeline = defineCollection({
     subtitle: z.string(),
     // one line on why the work is impressive — the skill/impact, not just the what
     impact: z.string(),
+    // expanded detail shown when the entry is clicked open (bullet points)
+    details: z.array(z.string()).default([]),
     // key technologies, rendered as chips
     stack: z.array(z.string()).default([]),
     // distinguishes work history / education from personal projects
