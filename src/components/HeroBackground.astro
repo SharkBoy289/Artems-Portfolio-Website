@@ -1,0 +1,35 @@
+---
+// Subtle, performance-first interactive accent for the hero.
+// - Mounts a low-density particle field that drifts and reacts to the pointer.
+// - Lazy: three.js is dynamically imported only after first paint + only if
+//   the device isn't reduced-motion and isn't tiny/mobile.
+// - Always renders a static CSS gradient glow underneath as the fallback.
+---
+
+<div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+  <!-- Static fallback glow (always present) -->
+  <div
+    class="absolute left-1/2 top-1/2 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-accent)] opacity-[0.10] blur-[130px]"
+  >
+  </div>
+  <!-- Three.js canvas mounts here when eligible -->
+  <canvas id="hero-particles" class="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-1000"></canvas>
+</div>
+
+<script>
+  // Guard: skip entirely for reduced-motion users and very small screens.
+  const prefersReduced = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  const tooSmall = window.matchMedia("(max-width: 640px)").matches;
+
+  if (!prefersReduced && !tooSmall) {
+    // Defer to idle so it never competes with first paint / LCP.
+    const start = () => import("../scripts/hero-particles.ts").then((m) => m.initHeroParticles());
+    if ("requestIdleCallback" in window) {
+      (window as any).requestIdleCallback(start, { timeout: 2000 });
+    } else {
+      setTimeout(start, 800);
+    }
+  }
+</script>

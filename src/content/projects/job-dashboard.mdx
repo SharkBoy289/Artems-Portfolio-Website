@@ -1,43 +1,47 @@
 ---
 title: Job Dashboard
-summary: A self-hosted job-application tracker that ingests recruiter email, classifies each message with Claude, and surfaces your pipeline in a native macOS desktop widget.
+summary: A self-hosted job-application tracker that ingests recruiter email, classifies each message with Claude, and surfaces your entire pipeline on a native macOS desktop widget.
 status: shipped
 year: "2026"
 tags: ["Python", "Claude / LLM", "MCP", "SQLite", "macOS / Swift", "Google APIs"]
 featured: true
 cover: "/projects/job-dashboard.svg"
+repo: "https://github.com/SharkBoy289"
 order: 1
 ---
 
-## What it does
+## The problem
 
-Job Dashboard turns the chaos of a job search into a single, always-visible
-pipeline. Recruiter and ATS email (Greenhouse, Lever, Ashby, Workday, …) is
-labelled in Gmail, picked up by a scheduled pipeline, and **classified by
-Claude with structured output** into a clean set of stages:
+A job search generates a flood of email across a dozen ATS platforms
+(Greenhouse, Lever, Ashby, Workday…). Keeping a spreadsheet current by hand is
+tedious and always out of date. I wanted a system that watched my inbox and
+kept an accurate pipeline for me — with zero manual data entry.
 
-`planned → applied → screen → technical_interview → personal_interview → offer | rejected | ghosted`
+## What's technically interesting
 
-Interviews are pushed to Google Calendar automatically. Every stage change is
-recorded as an event, feeding live stats — response rate, apps this week,
-average days to first response, in-flight count — onto an **extra-large macOS
-desktop widget** and a native app.
+- **An LLM in the classification loop.** Each labelled email is sent to
+  **Claude with a structured-output schema**, returning a typed result rather
+  than free text — so the pipeline can trust and act on it programmatically.
+- **An event-sourced data model.** Every stage change is recorded as an event.
+  The upsert logic **never regresses a stage** and **auto-derives "ghosted"**
+  after 21 quiet days. Stats (response rate, average days to first response,
+  in-flight count) are computed from the event log, not stored counters.
+- **A native macOS client.** A SwiftUI app and an extra-large desktop widget
+  render the pipeline, post notifications on stage changes, and let me move
+  applications between stages directly.
+- **Tool integration both ways.** An **MCP server** lets me add or move
+  applications straight from Claude Desktop; interviews are pushed to **Google
+  Calendar** automatically.
 
-## How it's built
+## Stack
 
-- **Ingestion pipeline** (Python, launchd every 3h) reads labelled Gmail,
-  sends each email to **Claude (Opus) with a structured-output schema**, and
-  upserts results into SQLite — with logic that never regresses a stage and
-  auto-derives "ghosted" after 21 quiet days.
-- **MCP server** lets me add and move applications by hand straight from
-  Claude Desktop.
-- **Google Calendar integration** creates interview events.
-- **macOS app + widget** render the pipeline, post notifications on stage
-  changes, and allow moving applications between stages.
+Python ingestion pipeline (launchd, every 3h) · Claude (Opus) structured
+output · SQLite event store · Gmail + Google Calendar OAuth · MCP server ·
+SwiftUI macOS app + widget.
 
-## Why it matters
+## Outcome
 
-It's a real, multi-component system: an event-sourced data model, an LLM in
-the classification loop, OAuth integrations, a background scheduler, and a
-native client. It's the project I reach for when someone asks what I can
-actually ship end-to-end.
+A genuinely useful tool I run every day — and the project I point to when
+someone asks what I can ship end-to-end. It touches data modelling, an AI
+integration, OAuth, background scheduling, and native UI in one coherent
+system.

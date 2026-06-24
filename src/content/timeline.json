@@ -3,7 +3,9 @@
     "id": "agricola-online",
     "year": "2026",
     "title": "Agricola Online",
-    "subtitle": "Multiplayer board game platform — Go, WebSockets, Redis, Kubernetes",
+    "subtitle": "Real-time multiplayer adaptation of the board game Agricola.",
+    "impact": "Why it matters: a turn-based, room-per-match game is a genuine reason to reach for distributed systems — Go goroutines per game loop, WebSocket state sync, and Kubernetes that scales game servers with demand. Concurrency and orchestration done where they're actually needed.",
+    "stack": ["Go", "WebSockets", "Redis", "Kubernetes"],
     "status": "in-progress",
     "sort": 100
   },
@@ -11,7 +13,9 @@
     "id": "job-dashboard",
     "year": "2026",
     "title": "Job Dashboard",
-    "subtitle": "AI-powered job-application tracker with a native macOS widget",
+    "subtitle": "Self-hosted job tracker: Gmail in, Claude classification, native macOS widget out.",
+    "impact": "Why it matters: a real end-to-end system — an LLM in the classification loop with structured output, an event-sourced data model that never regresses a stage, OAuth integrations (Gmail + Calendar), a background scheduler, and a native SwiftUI widget. The project that proves I can ship something complete.",
+    "stack": ["Python", "Claude / LLM", "MCP", "SQLite", "Swift"],
     "status": "shipped",
     "sort": 90
   },
@@ -19,24 +23,20 @@
     "id": "gym-coach",
     "year": "2026",
     "title": "Gym Coach App",
-    "subtitle": "Adaptive personal training companion — a tool I build for myself",
+    "subtitle": "Adaptive personal-training companion built to be used daily.",
+    "impact": "Why it matters: programming that adapts to real performance — progressive overload, deloads, missed-session handling — modelled as explicit logic rather than a static plan. A tool I actually use, which is why it keeps improving.",
+    "stack": ["TypeScript", "Mobile", "Health data"],
     "status": "in-progress",
     "sort": 85
   },
   {
-    "id": "personal-projects",
-    "year": "2024–2025",
-    "title": "Personal Projects Collection",
-    "subtitle": "14+ self-directed builds across web, AI, and graphics",
-    "status": "shipped",
+    "id": "embedded-console",
+    "year": "2026",
+    "title": "Embedded Handheld Console",
+    "subtitle": "A pass-and-play game device running on custom embedded hardware.",
+    "impact": "Why it matters: hardware + firmware + a turn-based game engine on constrained hardware — embedded/systems work most web developers never touch. Owned end-to-end, from the rules engine down to the boot sequence.",
+    "stack": ["Rust / Go", "Embedded Linux", "Raspberry Pi"],
+    "status": "in-progress",
     "sort": 80
-  },
-  {
-    "id": "placeholder-1",
-    "year": "2024",
-    "title": "More coming soon",
-    "subtitle": "A slot reserved for the next project worth showing",
-    "status": "experiment",
-    "sort": 10
   }
 ]

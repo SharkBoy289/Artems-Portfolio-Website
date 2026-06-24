@@ -40,6 +40,10 @@ const timeline = defineCollection({
     year: z.string(),
     title: z.string(),
     subtitle: z.string(),
+    // one line on why the work is impressive — the skill/impact, not just the what
+    impact: z.string(),
+    // key technologies, rendered as chips
+    stack: z.array(z.string()).default([]),
     status: z.enum(["shipped", "in-progress", "experiment"]).default("shipped"),
     // sort key — higher = more recent (rendered most-recent-first)
     sort: z.number(),

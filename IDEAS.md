@@ -86,12 +86,64 @@ just works and that you actually own.
 **Open questions to decide later:** exact hardware, which 2–3 launch games,
 Rust vs Go, screen tech (TFT vs e-ink).
 
+### "My Network" — personal relationship graph  🆕 (Artem OS module)
+
+Already prototyped inside the personal dashboard app. A force-directed
+visualization of the people around you and how they connect — a fun, beautiful
+way to see your own social graph.
+
+**Buildable, privacy-respecting version (do this):**
+- You populate it yourself, and/or import from **data you legitimately own**:
+  your own Instagram/Google "Download your data" exports, your contacts,
+  calendar. Never other people's hidden data.
+- Force-directed graph (D3 or Three.js / 3d-force-graph) with notes per person:
+  how you know them, last contact, shared context, tags.
+- Fits "Artem OS" as a module; great portfolio visual (interactive,
+  data-driven, looks impressive).
+
+**Hard limit — do NOT build:** pulling friends'/others' connection data from
+Instagram/Meta/etc. Their APIs don't expose the social graph by design,
+scraping it violates ToS (account-ban risk) and is a privacy problem. "Data
+the platforms hide" is fenced off legally and intentionally. Keep this to data
+the user owns and consents to.
+
+### Could this become a real product? — "Personal OS" for others
+
+Vision: a privacy-first, local-first app combining a **relationship graph** +
+**personal data tracking** + **AI life coaching** — built on data the user
+owns (their own exports, contacts, health). Give people back the data
+platforms hoard, in one system they control.
+
+- **Cool? Yes** — and the *integrated, privacy-first* combo is a real wedge.
+  Pieces exist separately (Monica = personal CRM; Exist.io / Gyroscope =
+  quantified self; Reflect / Tana / Mem = AI notes; Rewind / Limitless = life
+  logging) but nobody owns relationship-graph + life-data + coaching, local-first.
+- **Done already? No** — not as one integrated product. The differentiator is
+  the combination + the privacy/ownership stance.
+- **Claude tier needed?** Just the **Claude Developer Platform (API)** — pay
+  per token, no contract, sign up with a card. Same thing Job Dashboard already
+  uses (claude-opus-4-8, structured output). **NOT** Claude Enterprise (that's
+  for big companies — SSO/compliance/seats); **NOT** Pro/Max (that's the chat
+  app subscription, not for powering your own app). Use the `claude-api` skill
+  for exact model IDs + pricing when building.
+- **Path:** start as a personal "My Network" + Artem OS module → if it's
+  genuinely useful to you, generalize to a multi-user product later.
+
 ## Idea backlog (not yet selected)
 
 - LLM personal knowledge base with semantic search (RAG over own notes/docs).
 - Email/calendar triage agent (extends Job Dashboard's classify pattern to all mail).
 - Unified health hub: Apple Health + Strava + Gym Coach in one trend view.
 - Adaptive training engine (the "brain" inside Gym Coach: periodization, deloads, readiness from sleep/HRV).
+
+## Portfolio design references (free / public)
+
+- Example dev portfolios: brittanychiang.com, tania.dev, GitHub topic
+  `developer-portfolio`.
+- Design fundamentals: Refactoring UI (free articles), Apple HIG, Material
+  Design, web.dev (perf/SEO).
+- Optional: run the `deep-research` skill for a cited "hiring-optimized dev
+  portfolio 2026" brief — AFTER v1 ships.
 
 ## How this feeds the portfolio
 

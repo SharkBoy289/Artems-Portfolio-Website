@@ -1,30 +1,38 @@
 ---
 title: Gym Coach App
-summary: A personal training companion that plans workouts, tracks progress, and adapts to how your training is actually going — built to be something I use every day.
+summary: A personal-training companion that plans workouts, tracks progress, and adapts programming to how your training is actually going — built to be something I use every day.
 status: in-progress
 year: "2026"
-tags: ["Mobile / App", "Health", "TypeScript"]
+tags: ["TypeScript", "Mobile / App", "Health data"]
 featured: false
 cover: "/projects/gym-coach.svg"
-order: 4
+order: 3
 ---
 
-## What I'm building
+## The problem
 
-A workout coach I'll actually use — not another tracker that gets abandoned in
-a week. The goal is an app that plans sessions, logs lifts quickly, and adapts
-programming based on real performance (progressive overload, deloads, missed
-sessions).
+Most workout trackers are glorified spreadsheets — they log what you did but
+never tell you what to do next. They get abandoned in a week. I wanted a coach
+that plans sessions, logs lifts in as few taps as possible, and **adapts the
+program based on real performance**.
 
-This is **in progress** — it's part of a broader push to build tools that make
-my own systems feel seamless.
+## What's technically interesting
 
-## Planned scope
+- **Adaptive programming as logic, not a static plan.** Progressive overload,
+  deloads, and missed-session handling are modelled explicitly — next session's
+  targets are derived from recent history.
+- **Fast capture.** Logging sets/reps/weight is optimized for minimal taps,
+  because friction is why tracking apps die.
+- **A seamless data loop (planned).** Integration with Apple Health / wearables
+  so training data flows in and out without manual entry.
 
-- Fast workout logging (sets, reps, weight) with minimal taps.
-- Progress tracking and trend charts per exercise.
-- Adaptive programming: suggest next session's targets from recent history.
-- (Stretch) integration with Apple Health / wearables for a seamless data loop.
+## Stack
 
-> This card is intentionally honest about being early. It'll grow into a full
-> case study as the app takes shape.
+TypeScript · mobile-first UI · local-first data · (planned) Apple Health
+integration.
+
+## Status
+
+**In progress** — part of a broader push to build personal tools that make my
+own systems feel seamless. It'll grow into a full case study as the app takes
+shape.

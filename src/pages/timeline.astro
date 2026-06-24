@@ -39,6 +39,20 @@ const entries = (await getCollection("timeline")).sort(
               {e.data.title}
             </h3>
             <p class="mt-1 text-[var(--color-muted)]">{e.data.subtitle}</p>
+            <p class="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--color-faint)]">
+              {e.data.impact}
+            </p>
+            {
+              e.data.stack.length > 0 && (
+                <ul class="mt-3 flex flex-wrap gap-1.5">
+                  {e.data.stack.map((tech) => (
+                    <li class="rounded-md bg-[var(--color-surface-2)] px-2 py-0.5 text-xs text-[var(--color-muted)]">
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
+              )
+            }
           </li>
         ))
       }

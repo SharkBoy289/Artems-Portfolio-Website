@@ -1,6 +1,6 @@
 ---
 title: Agricola Online
-summary: A real-time multiplayer adaptation of the board game Agricola — a Go game server with WebSockets and Redis-backed game state, orchestrated on Kubernetes to scale game rooms on demand.
+summary: A real-time multiplayer adaptation of the board game Agricola — a Go game server with WebSockets and Redis-backed state, orchestrated on Kubernetes to scale game rooms on demand.
 status: in-progress
 year: "2026"
 tags: ["Go", "WebSockets", "Redis", "Kubernetes", "Docker", "Microservices"]
@@ -9,36 +9,36 @@ cover: "/projects/agricola-online.svg"
 order: 2
 ---
 
-## The idea
+## The problem
 
-Agricola is a turn-based worker-placement game for up to five players. That
-session-based, room-per-match shape is a natural fit for a microservices
-architecture — and a genuine reason to reach for **Go and Kubernetes** rather
-than a single monolith.
+Agricola is a turn-based worker-placement game for up to five players. I wanted
+to learn distributed systems on a problem that **genuinely needs** them — not a
+toy that's containerized for show. A session-based, room-per-match game is
+exactly that problem.
 
-This project is **in progress** — I'm building it to deepen my Go and
-Kubernetes skills with a problem that actually justifies the stack.
+## What's technically interesting
 
-## Planned architecture
+- **A concurrency model that fits.** One goroutine drives the authoritative
+  game loop per active room, with channels for player actions and broadcasts
+  for state changes — the kind of workload Go is built for.
+- **A real rules engine.** Agricola's worker placement, resource economy,
+  harvest phases, and end-game scoring are modelled as a **state machine** with
+  pure transition functions (`apply(action, state) → state`) — easy to test,
+  easy to snapshot.
+- **State that survives pod churn.** Game state is snapshotted to **Redis**
+  after each committed turn, so any pod can serve a room and reconnections
+  survive a restart.
+- **Orchestration with a reason to exist.** Game-server pods scale
+  **horizontally** on Kubernetes with player demand — the orchestration earns
+  its place because the workload is naturally many independent sessions.
 
-- **Game server (Go):** one goroutine-driven game loop per active match,
-  modelling Agricola's rules — worker placement, the resource economy, harvest
-  phases, and scoring. Clients connect over **WebSockets** for live turn
-  updates.
-- **Lobby / matchmaking service:** creates and assigns players to game rooms.
-- **Redis:** shared, fast game and session state so any pod can serve a room
-  and reconnections survive a pod restart.
-- **Kubernetes:** game-server pods scale **horizontally** with player demand,
-  fronted by a load balancer — the orchestration earns its place because the
-  workload is naturally many independent, scalable sessions.
+## Stack
 
-See the full technical write-up in
-[`docs/agricola-architecture.md`](https://github.com/SharkBoy289) (linked once
-the repo is public).
+Go game server · WebSocket protocol (authoritative server, versioned state) ·
+Redis for room/session state · Docker · Kubernetes (Deployments + HPA).
 
-## Why this project
+## Status
 
-It's deliberately chosen to be impressive *and* honest: a turn-based game is
-realistically buildable solo, while the multiplayer + scaling requirements make
-Go's concurrency model and Kubernetes' orchestration genuinely the right tools
-— not decoration on a resume.
+**In progress.** The full architecture and build milestones are written up in
+the project's `docs/agricola-architecture.md`. I'm building it specifically to
+deepen my Go and Kubernetes skills on a problem where they're the right tools.
