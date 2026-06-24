@@ -17,6 +17,13 @@ const typeClass = {
   education: "text-sky-400 ring-sky-500/40 bg-sky-500/10",
   project: "text-[var(--color-muted)] ring-[var(--color-border)] bg-[var(--color-surface-2)]",
 } as const;
+
+const dotClass = (e: (typeof entries)[number]) =>
+  e.data.status === "in-progress"
+    ? "bg-[var(--color-accent)]"
+    : e.data.type === "education"
+      ? "bg-sky-400"
+      : "bg-[var(--color-fg)]";
 ---
 
 <Layout title="Timeline — Artem Zagaynov">
@@ -29,87 +36,202 @@ const typeClass = {
       </p>
     </header>
 
-    <ol class="relative border-l border-[var(--color-border)] pl-8 sm:pl-10">
+    <!-- ============================================================
+         MOBILE / < lg : vertical accordion (DOM order = chronological)
+         ============================================================ -->
+    <ol class="relative border-l border-[var(--color-border)] pl-8 sm:pl-10 lg:hidden">
       {
         entries.map((e) => (
           <li class="relative mb-6 last:mb-0">
             <span
               class:list={[
                 "absolute top-5 grid h-4 w-4 place-items-center rounded-full ring-4 ring-[var(--color-bg)] -left-[2.05rem] sm:-left-[2.55rem] z-10",
-                e.data.status === "in-progress"
-                  ? "bg-[var(--color-accent)]"
-                  : e.data.type === "education"
-                    ? "bg-sky-400"
-                    : "bg-[var(--color-fg)]",
+                dotClass(e),
               ]}
             />
-            <details class="group rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] transition-colors open:border-[var(--color-accent)]/40 hover:border-[var(--color-border)]">
+            <details class="group rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] transition-colors open:border-[var(--color-accent)]/40">
               <summary class="flex cursor-pointer list-none items-start justify-between gap-4 p-5 [&::-webkit-details-marker]:hidden">
                 <div>
                   <div class="flex flex-wrap items-center gap-2.5">
-                    <span
-                      class:list={[
-                        "rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1",
-                        typeClass[e.data.type],
-                      ]}
-                    >
+                    <span class:list={["rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1", typeClass[e.data.type]]}>
                       {typeLabel[e.data.type]}
                     </span>
-                    <span class="font-mono text-sm text-[var(--color-faint)]">
-                      {e.data.year}
-                    </span>
+                    <span class="font-mono text-sm text-[var(--color-faint)]">{e.data.year}</span>
                   </div>
-                  <h3 class="mt-2 text-lg font-semibold text-[var(--color-fg)] sm:text-xl">
-                    {e.data.title}
-                  </h3>
-                  <p class="mt-1 text-sm text-[var(--color-muted)]">
-                    {e.data.subtitle}
-                  </p>
+                  <h3 class="mt-2 text-lg font-semibold text-[var(--color-fg)]">{e.data.title}</h3>
+                  <p class="mt-1 text-sm text-[var(--color-muted)]">{e.data.subtitle}</p>
                 </div>
-                <svg
-                  class="mt-1 h-5 w-5 shrink-0 text-[var(--color-faint)] transition-transform duration-200 group-open:rotate-180"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  aria-hidden="true"
-                >
+                <svg class="mt-1 h-5 w-5 shrink-0 text-[var(--color-faint)] transition-transform duration-200 group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </summary>
-
               <div class="border-t border-[var(--color-border)] px-5 py-5">
-                <p class="text-sm leading-relaxed text-[var(--color-muted)]">
-                  {e.data.impact}
-                </p>
-                {
-                  e.data.details.length > 0 && (
-                    <ul class="mt-4 flex flex-col gap-2">
-                      {e.data.details.map((d) => (
-                        <li class="flex gap-2.5 text-sm leading-relaxed text-[var(--color-faint)]">
-                          <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-[var(--color-accent)]" />
-                          <span>{d}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )
-                }
-                {
-                  e.data.stack.length > 0 && (
-                    <ul class="mt-4 flex flex-wrap gap-1.5">
-                      {e.data.stack.map((tech) => (
-                        <li class="rounded-md bg-[var(--color-surface-2)] px-2 py-0.5 text-xs text-[var(--color-muted)]">
-                          {tech}
-                        </li>
-                      ))}
-                    </ul>
-                  )
-                }
+                <p class="text-sm leading-relaxed text-[var(--color-muted)]">{e.data.impact}</p>
+                {e.data.details.length > 0 && (
+                  <ul class="mt-4 flex flex-col gap-2">
+                    {e.data.details.map((d) => (
+                      <li class="flex gap-2.5 text-sm leading-relaxed text-[var(--color-faint)]">
+                        <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-[var(--color-accent)]" />
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {e.data.stack.length > 0 && (
+                  <ul class="mt-4 flex flex-wrap gap-1.5">
+                    {e.data.stack.map((tech) => (
+                      <li class="rounded-md bg-[var(--color-surface-2)] px-2 py-0.5 text-xs text-[var(--color-muted)]">{tech}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </details>
           </li>
         ))
       }
     </ol>
+
+    <!-- ============================================================
+         DESKTOP / lg+ : horizontal alternating axis. Cards above/below
+         a center line; click a card to open its detail modal.
+         DOM order stays chronological (a11y); only visuals alternate.
+         ============================================================ -->
+    <ol class="relative hidden lg:flex lg:items-stretch">
+      <!-- center axis line -->
+      <span class="pointer-events-none absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-[var(--color-border)]" aria-hidden="true"></span>
+      {
+        entries.map((e, i) => {
+          const above = i % 2 === 0;
+          return (
+            <li class="flex flex-1 flex-col px-2">
+              {/* TOP half: card if above, else empty spacer */}
+              <div class="flex h-44 flex-col justify-end pb-3">
+                {above && (
+                  <button data-entry={i} class="timeline-card group rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 text-left transition-all duration-200 hover:-translate-y-1 hover:border-[var(--color-accent)]/60 focus-visible:border-[var(--color-accent)]">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <span class:list={["rounded-full px-2 py-0.5 text-[0.65rem] font-semibold ring-1", typeClass[e.data.type]]}>{typeLabel[e.data.type]}</span>
+                      <span class="font-mono text-xs text-[var(--color-faint)]">{e.data.year}</span>
+                    </div>
+                    <h3 class="mt-2 text-sm font-semibold leading-snug text-[var(--color-fg)]">{e.data.title}</h3>
+                    <span class="mt-2 inline-block text-xs font-medium text-[var(--color-accent)] opacity-0 transition-opacity group-hover:opacity-100">View details →</span>
+                  </button>
+                )}
+              </div>
+              {/* DOT on the axis */}
+              <div class="flex h-4 items-center justify-center">
+                <span class:list={["z-10 h-4 w-4 rounded-full ring-4 ring-[var(--color-bg)]", dotClass(e)]} aria-hidden="true"></span>
+              </div>
+              {/* BOTTOM half: card if below, else empty spacer */}
+              <div class="flex h-44 flex-col justify-start pt-3">
+                {!above && (
+                  <button data-entry={i} class="timeline-card group rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 text-left transition-all duration-200 hover:-translate-y-1 hover:border-[var(--color-accent)]/60 focus-visible:border-[var(--color-accent)]">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <span class:list={["rounded-full px-2 py-0.5 text-[0.65rem] font-semibold ring-1", typeClass[e.data.type]]}>{typeLabel[e.data.type]}</span>
+                      <span class="font-mono text-xs text-[var(--color-faint)]">{e.data.year}</span>
+                    </div>
+                    <h3 class="mt-2 text-sm font-semibold leading-snug text-[var(--color-fg)]">{e.data.title}</h3>
+                    <span class="mt-2 inline-block text-xs font-medium text-[var(--color-accent)] opacity-0 transition-opacity group-hover:opacity-100">View details →</span>
+                  </button>
+                )}
+              </div>
+            </li>
+          );
+        })
+      }
+    </ol>
   </section>
+
+  <!-- Detail modal (desktop). Native <dialog> = accessible + keyboard/esc support. -->
+  <dialog
+    id="timeline-modal"
+    class="m-auto w-[min(92vw,40rem)] rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-0 text-[var(--color-fg)] backdrop:bg-black/60"
+  >
+    <div class="p-6">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span id="m-type" class="rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1"></span>
+            <span id="m-year" class="font-mono text-sm text-[var(--color-faint)]"></span>
+          </div>
+          <h3 id="m-title" class="mt-2 text-xl font-semibold"></h3>
+          <p id="m-subtitle" class="mt-1 text-[var(--color-muted)]"></p>
+        </div>
+        <button id="m-close" class="grid h-9 w-9 shrink-0 place-items-center rounded-lg text-[var(--color-faint)] transition-colors hover:bg-[var(--color-surface-2)] hover:text-[var(--color-fg)]" aria-label="Close">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+      <p id="m-impact" class="mt-5 text-sm leading-relaxed text-[var(--color-muted)]"></p>
+      <ul id="m-details" class="mt-4 flex flex-col gap-2"></ul>
+      <ul id="m-stack" class="mt-4 flex flex-wrap gap-1.5"></ul>
+    </div>
+  </dialog>
+
+  <!-- entry data for the modal -->
+  <script
+    type="application/json"
+    id="timeline-data"
+    set:html={JSON.stringify(
+      entries.map((e) => ({
+        type: e.data.type,
+        typeLabel: typeLabel[e.data.type],
+        typeClass: typeClass[e.data.type],
+        year: e.data.year,
+        title: e.data.title,
+        subtitle: e.data.subtitle,
+        impact: e.data.impact,
+        details: e.data.details,
+        stack: e.data.stack,
+      })),
+    )}
+  />
+
+  <script is:inline>
+    (function () {
+      const data = JSON.parse(document.getElementById("timeline-data").textContent);
+      const modal = document.getElementById("timeline-modal");
+      if (!modal) return;
+      const set = (id, txt) => (document.getElementById(id).textContent = txt);
+
+      function open(i) {
+        const e = data[i];
+        const typeEl = document.getElementById("m-type");
+        typeEl.textContent = e.typeLabel;
+        typeEl.className = "rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1 " + e.typeClass;
+        set("m-year", e.year);
+        set("m-title", e.title);
+        set("m-subtitle", e.subtitle);
+        set("m-impact", e.impact);
+
+        const det = document.getElementById("m-details");
+        det.innerHTML = "";
+        e.details.forEach((d) => {
+          const li = document.createElement("li");
+          li.className = "flex gap-2.5 text-sm leading-relaxed text-[var(--color-faint)]";
+          li.innerHTML = '<span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-[var(--color-accent)]"></span><span></span>';
+          li.querySelector("span:last-child").textContent = d;
+          det.appendChild(li);
+        });
+
+        const st = document.getElementById("m-stack");
+        st.innerHTML = "";
+        e.stack.forEach((t) => {
+          const li = document.createElement("li");
+          li.className = "rounded-md bg-[var(--color-surface-2)] px-2 py-0.5 text-xs text-[var(--color-muted)]";
+          li.textContent = t;
+          st.appendChild(li);
+        });
+
+        modal.showModal();
+      }
+
+      document.querySelectorAll(".timeline-card").forEach((btn) => {
+        btn.addEventListener("click", () => open(Number(btn.dataset.entry)));
+      });
+      document.getElementById("m-close")?.addEventListener("click", () => modal.close());
+      // click on backdrop closes
+      modal.addEventListener("click", (ev) => {
+        if (ev.target === modal) modal.close();
+      });
+    })();
+  </script>
 </Layout>
