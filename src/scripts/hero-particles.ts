@@ -33,12 +33,12 @@ export function initHeroParticles() {
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
-  // Accent-blue points, soft and small.
+  // Muted terracotta points, soft and small (matches the palette accent).
   const material = new THREE.PointsMaterial({
-    color: 0x2563eb,
-    size: 0.13,
+    color: 0xc8825a,
+    size: 0.12,
     transparent: true,
-    opacity: 0.9,
+    opacity: 0.7,
     sizeAttenuation: true,
   });
   const points = new THREE.Points(geometry, material);

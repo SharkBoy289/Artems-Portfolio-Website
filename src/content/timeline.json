@@ -1,42 +1,68 @@
 [
   {
+    "id": "heart4victims-qa",
+    "year": "Nov 2024 – Present",
+    "title": "Integration & QA Engineer — HEART4Victims",
+    "subtitle": "VCPMS, a cloud case-management platform helping state agencies process crime-victim compensation claims.",
+    "impact": "Why it matters: I own the integration test suites for a real, multi-tenant production system — Playwright E2E across Angular + .NET Core, covering OAuth/JWT auth, document management, and payment integrations, with automated API regression in Azure DevOps CI/CD.",
+    "stack": ["Playwright", ".NET Core", "Angular", "Azure DevOps", "OAuth/JWT"],
+    "type": "work",
+    "status": "in-progress",
+    "sort": 100
+  },
+  {
     "id": "agricola-online",
     "year": "2026",
     "title": "Agricola Online",
     "subtitle": "Real-time multiplayer adaptation of the board game Agricola.",
-    "impact": "Why it matters: a turn-based, room-per-match game is a genuine reason to reach for distributed systems — Go goroutines per game loop, WebSocket state sync, and Kubernetes that scales game servers with demand. Concurrency and orchestration done where they're actually needed.",
+    "impact": "Why it matters: a turn-based, room-per-match game is a genuine reason to reach for distributed systems — Go goroutines per game loop, WebSocket state sync, and Kubernetes that scales game servers with demand.",
     "stack": ["Go", "WebSockets", "Redis", "Kubernetes"],
+    "type": "project",
     "status": "in-progress",
-    "sort": 100
+    "sort": 95
   },
   {
     "id": "job-dashboard",
     "year": "2026",
     "title": "Job Dashboard",
     "subtitle": "Self-hosted job tracker: Gmail in, Claude classification, native macOS widget out.",
-    "impact": "Why it matters: a real end-to-end system — an LLM in the classification loop with structured output, an event-sourced data model that never regresses a stage, OAuth integrations (Gmail + Calendar), a background scheduler, and a native SwiftUI widget. The project that proves I can ship something complete.",
+    "impact": "Why it matters: a complete system — an LLM in the classification loop with structured output, an event-sourced data model, OAuth integrations, a scheduler, and a native widget. Proof I can ship end-to-end.",
     "stack": ["Python", "Claude / LLM", "MCP", "SQLite", "Swift"],
+    "type": "project",
     "status": "shipped",
     "sort": 90
   },
   {
-    "id": "gym-coach",
-    "year": "2026",
-    "title": "Gym Coach App",
-    "subtitle": "Adaptive personal-training companion built to be used daily.",
-    "impact": "Why it matters: programming that adapts to real performance — progressive overload, deloads, missed-session handling — modelled as explicit logic rather than a static plan. A tool I actually use, which is why it keeps improving.",
-    "stack": ["TypeScript", "Mobile", "Health data"],
-    "status": "in-progress",
-    "sort": 85
+    "id": "poseidon-intern",
+    "year": "Oct 2023 – Nov 2024",
+    "title": "Full-Stack Intern — Poseidon Aerospace",
+    "subtitle": "Startup building unmanned seaplane drones for long-range maritime cargo and defense.",
+    "impact": "Why it matters: shipped real flight-software infrastructure — RESTful APIs integrating flight telemetry with central databases, Python telemetry monitoring/automation on Linux (Grafana, Azure Monitor), and Docker + CI/CD for UAV dashboards.",
+    "stack": ["Node.js", "Express", "SQL", "Python", "Docker", "Grafana"],
+    "type": "work",
+    "status": "shipped",
+    "sort": 80
   },
   {
-    "id": "embedded-console",
-    "year": "2026",
-    "title": "Embedded Handheld Console",
-    "subtitle": "A pass-and-play game device running on custom embedded hardware.",
-    "impact": "Why it matters: hardware + firmware + a turn-based game engine on constrained hardware — embedded/systems work most web developers never touch. Owned end-to-end, from the rules engine down to the boot sequence.",
-    "stack": ["Rust / Go", "Embedded Linux", "Raspberry Pi"],
-    "status": "in-progress",
-    "sort": 80
+    "id": "heart4victims-intern",
+    "year": "Jun 2022 – Sep 2023",
+    "title": "Full-Stack Intern — HEART4Victims",
+    "subtitle": "Earlier internship on the VCPMS claim-management platform.",
+    "impact": "Why it matters: built a step-by-step online claim form with validation (fewer incomplete applications), payment APIs to the state's finance software (removing double entry), a secure SignalR messaging feature, and AWS environments via Terraform IaC.",
+    "stack": ["ASP.NET Core", "Angular", "SQL", "SignalR", "AWS", "Terraform"],
+    "type": "work",
+    "status": "shipped",
+    "sort": 70
+  },
+  {
+    "id": "ucsc",
+    "year": "Sep 2021 – Jun 2025",
+    "title": "B.S. Computer Science — UC Santa Cruz",
+    "subtitle": "Bachelor's degree in Computer Science. GPA 3.5.",
+    "impact": "Foundations in algorithms, systems, and software engineering — alongside three concurrent industry roles.",
+    "stack": [],
+    "type": "education",
+    "status": "shipped",
+    "sort": 60
   }
 ]

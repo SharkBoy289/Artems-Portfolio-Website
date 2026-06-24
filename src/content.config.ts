@@ -44,6 +44,8 @@ const timeline = defineCollection({
     impact: z.string(),
     // key technologies, rendered as chips
     stack: z.array(z.string()).default([]),
+    // distinguishes work history / education from personal projects
+    type: z.enum(["work", "education", "project"]).default("project"),
     status: z.enum(["shipped", "in-progress", "experiment"]).default("shipped"),
     // sort key — higher = more recent (rendered most-recent-first)
     sort: z.number(),

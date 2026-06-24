@@ -28,3 +28,7 @@ pnpm-debug.log*
 
 # editor
 *.swp
+
+# personal docs (keep out of public repo)
+*.docx
+2026 full stack resume.docx

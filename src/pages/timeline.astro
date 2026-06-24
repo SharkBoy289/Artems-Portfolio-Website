@@ -1,11 +1,22 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import StatusBadge from "../components/StatusBadge.astro";
 
 const entries = (await getCollection("timeline")).sort(
   (a, b) => b.data.sort - a.data.sort,
 );
+
+const typeLabel = {
+  work: "Work",
+  education: "Education",
+  project: "Project",
+} as const;
+
+const typeClass = {
+  work: "text-[var(--color-accent)] ring-[var(--color-accent)]/40 bg-[var(--color-accent-soft)]",
+  education: "text-sky-400 ring-sky-500/40 bg-sky-500/10",
+  project: "text-[var(--color-muted)] ring-[var(--color-border)] bg-[var(--color-surface-2)]",
+} as const;
 ---
 
 <Layout title="Timeline — Artem Zagaynov">
@@ -13,29 +24,39 @@ const entries = (await getCollection("timeline")).sort(
     <header class="mb-12 max-w-2xl">
       <h1 class="section-heading text-4xl sm:text-5xl">Timeline</h1>
       <p class="mt-4 text-lg text-[var(--color-muted)]">
-        Where I've been building, most recent first.
+        My experience and projects — work, education, and what I build on the
+        side. Most recent first.
       </p>
     </header>
 
-    <ol class="relative border-l border-[var(--color-border)] pl-8">
+    <ol class="relative border-l border-[var(--color-border)] pl-8 sm:pl-10">
       {
         entries.map((e) => (
-          <li class="relative mb-10 last:mb-0">
+          <li class="relative mb-12 last:mb-0">
             <span
               class:list={[
-                "absolute -left-[2.6rem] top-1 grid h-5 w-5 place-items-center rounded-full ring-4 ring-[var(--color-bg)]",
+                "absolute top-1.5 grid h-4 w-4 place-items-center rounded-full ring-4 ring-[var(--color-bg)] -left-[2.05rem] sm:-left-[2.55rem]",
                 e.data.status === "in-progress"
-                  ? "bg-[var(--color-amber)]"
-                  : "bg-[var(--color-accent)]",
+                  ? "bg-[var(--color-accent)]"
+                  : e.data.type === "education"
+                    ? "bg-sky-400"
+                    : "bg-[var(--color-fg)]",
               ]}
             />
-            <div class="flex flex-wrap items-center gap-3">
-              <span class="font-mono text-sm text-[var(--color-amber)]">
+            <div class="flex flex-wrap items-center gap-2.5">
+              <span
+                class:list={[
+                  "rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1",
+                  typeClass[e.data.type],
+                ]}
+              >
+                {typeLabel[e.data.type]}
+              </span>
+              <span class="font-mono text-sm text-[var(--color-faint)]">
                 {e.data.year}
               </span>
-              <StatusBadge status={e.data.status} />
             </div>
-            <h3 class="mt-1 text-xl font-semibold text-[var(--color-fg)]">
+            <h3 class="mt-2 text-xl font-semibold text-[var(--color-fg)]">
               {e.data.title}
             </h3>
             <p class="mt-1 text-[var(--color-muted)]">{e.data.subtitle}</p>

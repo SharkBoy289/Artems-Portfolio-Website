@@ -1,22 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" role="img" aria-label="Gym Coach App">
-  <defs>
-    <linearGradient id="gc" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#9a3412"/>
-      <stop offset="1" stop-color="#0a0a0f"/>
-    </linearGradient>
-  </defs>
-  <rect width="800" height="450" fill="url(#gc)"/>
-  <!-- dumbbell -->
-  <g stroke="#fb923c" stroke-width="14" stroke-linecap="round" opacity="0.9">
-    <line x1="300" y1="240" x2="500" y2="240"/>
+  <rect width="800" height="450" fill="#171a21"/>
+  <!-- flat dumbbell, monochrome with accent bar -->
+  <g fill="#2a2f3a">
+    <rect x="250" y="200" width="24" height="80" rx="8"/>
+    <rect x="286" y="180" width="20" height="120" rx="8"/>
+    <rect x="494" y="180" width="20" height="120" rx="8"/>
+    <rect x="526" y="200" width="24" height="80" rx="8"/>
   </g>
-  <g fill="#fb923c" opacity="0.9">
-    <rect x="250" y="200" width="26" height="80" rx="8"/>
-    <rect x="288" y="180" width="22" height="120" rx="8"/>
-    <rect x="490" y="180" width="22" height="120" rx="8"/>
-    <rect x="524" y="200" width="26" height="80" rx="8"/>
-  </g>
-  <!-- progress line -->
-  <polyline points="120,360 220,330 320,335 420,300 520,290 620,250 700,230" fill="none" stroke="#fdba74" stroke-width="3" opacity="0.6"/>
-  <text x="80" y="80" fill="#fafafa" font-family="Inter, sans-serif" font-size="34" font-weight="700">Gym Coach App</text>
+  <rect x="306" y="232" width="188" height="16" rx="8" fill="#c8825a"/>
+  <!-- flat progress line -->
+  <polyline points="150,360 250,335 350,340 450,305 550,295 650,255" fill="none" stroke="#2a2f3a" stroke-width="3"/>
+  <text x="120" y="110" fill="#f5f5f4" font-family="Inter, sans-serif" font-size="30" font-weight="700">Gym Coach App</text>
 </svg>
