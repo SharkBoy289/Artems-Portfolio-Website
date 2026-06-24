@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Artem Zagaynov — Full-stack developer">
+  <rect width="1200" height="630" fill="#0f1115"/>
+  <!-- subtle corner accent dot grid, monochrome -->
+  <g fill="#1f232c">
+    <circle cx="1050" cy="120" r="4"/><circle cx="1100" cy="120" r="4"/><circle cx="1150" cy="120" r="4"/>
+    <circle cx="1050" cy="170" r="4"/><circle cx="1100" cy="170" r="4"/><circle cx="1150" cy="170" r="4"/>
+    <circle cx="1050" cy="220" r="4"/><circle cx="1100" cy="220" r="4"/><circle cx="1150" cy="220" r="4"/>
+  </g>
+  <text x="90" y="250" fill="#c8825a" font-family="Inter, sans-serif" font-size="28" font-weight="600" letter-spacing="4">FULL-STACK DEVELOPER</text>
+  <text x="88" y="350" fill="#f5f5f4" font-family="Inter, sans-serif" font-size="90" font-weight="800" letter-spacing="-2">Artem Zagaynov</text>
+  <text x="90" y="420" fill="#b3b1ab" font-family="Inter, sans-serif" font-size="34" font-weight="400">I build complete systems — AI tools, distributed services,</text>
+  <text x="90" y="466" fill="#b3b1ab" font-family="Inter, sans-serif" font-size="34" font-weight="400">and things that make everyday life feel seamless.</text>
+  <rect x="90" y="520" width="220" height="6" rx="3" fill="#c8825a"/>
+</svg>

@@ -7,8 +7,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: update to the final production domain before deploy (Phase 5).
-  site: 'https://artems-portfolio.vercel.app',
+  // Production URL (update if a custom domain is added later).
+  site: 'https://artem-zagaynov.vercel.app',
 
   vite: {
     plugins: [tailwindcss()]
