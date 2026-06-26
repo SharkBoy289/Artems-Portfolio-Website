@@ -75,11 +75,20 @@ const ogImage = new URL(image, Astro.site);
 
     <script is:inline>
       // Scroll-reveal: mark page ready (so no-JS shows content), then reveal
-      // [data-reveal] elements as they enter view.
+      // [data-reveal] and staggered [data-reveal-stagger] elements as they enter.
       (function () {
         const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         document.documentElement.classList.add("reveal-ready");
-        const els = document.querySelectorAll("[data-reveal]");
+
+        // Assign stagger index per item within each stagger group.
+        const groups = document.querySelectorAll("[data-reveal-group]");
+        groups.forEach((group) => {
+          group
+            .querySelectorAll("[data-reveal-stagger]")
+            .forEach((el, i) => el.style.setProperty("--reveal-i", String(i)));
+        });
+
+        const els = document.querySelectorAll("[data-reveal], [data-reveal-stagger]");
         if (reduce || !("IntersectionObserver" in window)) {
           els.forEach((el) => el.classList.add("is-visible"));
           return;
@@ -97,6 +106,17 @@ const ogImage = new URL(image, Astro.site);
         );
         els.forEach((el) => io.observe(el));
       })();
+    </script>
+
+    <!-- Cursor-tilt on [data-tilt] cards. Lazy + guarded (touch / reduced-motion skip). -->
+    <script>
+      import { initTilt } from "../scripts/tilt.ts";
+      const run = () => initTilt();
+      if ("requestIdleCallback" in window) {
+        (window as any).requestIdleCallback(run, { timeout: 1500 });
+      } else {
+        setTimeout(run, 400);
+      }
     </script>
   </body>
 </html>

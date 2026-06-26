@@ -25,8 +25,10 @@ const {
 
 <a
   href={href}
+  data-tilt
+  data-reveal-stagger
   class:list={[
-    "group relative flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] transition-all duration-200 hover:-translate-y-1 hover:border-[var(--color-accent)]/60",
+    "group relative flex flex-col overflow-hidden rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] transition-all duration-200 hover:border-[var(--color-accent)]/60 hover:shadow-[0_18px_40px_-20px_rgba(0,0,0,0.5)]",
     featured ? "sm:col-span-2" : "",
   ]}
 >

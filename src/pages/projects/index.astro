@@ -21,7 +21,7 @@ const projects = (await getCollection("projects")).sort(
       </p>
     </header>
 
-    <div class="grid gap-6 sm:grid-cols-2">
+    <div class="grid gap-6 sm:grid-cols-2" data-reveal-group>
       {
         projects.map((p) => (
           <ProjectCard
