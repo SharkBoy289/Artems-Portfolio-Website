@@ -18,13 +18,12 @@ const typeClass = {
   project: "text-[var(--color-muted)] ring-[var(--color-border)] bg-[var(--color-surface-2)]",
 } as const;
 
-// Dot color follows the entry TYPE so dots match their category badge.
-const dotClass = (e: (typeof entries)[number]) =>
-  ({
-    work: "bg-[var(--color-accent)]",
-    education: "bg-sky-400",
-    project: "bg-[var(--color-muted)]",
-  })[e.data.type];
+// Node color follows the entry TYPE so nodes match their category badge.
+const dotColor = {
+  work: "var(--color-accent)",
+  education: "#38bdf8",
+  project: "var(--color-faint)",
+} as const;
 ---
 
 <Layout title="Timeline | Artem Zagaynov">
@@ -38,107 +37,52 @@ const dotClass = (e: (typeof entries)[number]) =>
     </header>
 
     <!-- ============================================================
-         MOBILE / < lg : vertical accordion (DOM order = chronological)
+         Vertical rail (all sizes). Gradient spine, glowing category
+         nodes, uniform cards. Each card opens its detail modal.
+         DOM order = entries order (newest first), so data-entry={i}
+         maps directly into the modal data array.
          ============================================================ -->
-    <ol class="relative border-l border-[var(--color-border)] pl-8 sm:pl-10 lg:hidden">
+    <ol class="relative mx-auto max-w-3xl">
+      <!-- gradient spine -->
+      <span
+        class="pointer-events-none absolute bottom-3 left-[7px] top-3 w-[2px] sm:left-[9px]"
+        style="background: linear-gradient(180deg, transparent, var(--color-border) 5%, var(--color-border) 95%, transparent);"
+        aria-hidden="true"></span>
       {
-        entries.map((e) => (
-          <li class="relative mb-6 last:mb-0">
+        entries.map((e, i) => (
+          <li class="relative mb-7 pl-10 last:mb-0 sm:pl-12">
+            {/* glowing category node */}
             <span
-              class:list={[
-                "absolute top-5 grid h-4 w-4 place-items-center rounded-full ring-4 ring-[var(--color-bg)] -left-[2.05rem] sm:-left-[2.55rem] z-10",
-                dotClass(e),
-              ]}
-            />
-            <details class="group rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] transition-colors open:border-[var(--color-accent)]/40">
-              <summary class="flex cursor-pointer list-none items-start justify-between gap-4 p-5 [&::-webkit-details-marker]:hidden">
-                <div>
-                  <div class="flex flex-wrap items-center gap-2.5">
-                    <span class:list={["rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1", typeClass[e.data.type]]}>
-                      {typeLabel[e.data.type]}
-                    </span>
-                    <span class="font-mono text-sm text-[var(--color-faint)]">{e.data.year}</span>
-                  </div>
-                  <h3 class="mt-2 text-lg font-semibold text-[var(--color-fg)]">{e.data.title}</h3>
-                  <p class="mt-1 text-sm text-[var(--color-muted)]">{e.data.subtitle}</p>
-                </div>
-                <svg class="mt-1 h-5 w-5 shrink-0 text-[var(--color-faint)] transition-transform duration-200 group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </summary>
-              <div class="border-t border-[var(--color-border)] px-5 py-5">
-                <p class="text-sm leading-relaxed text-[var(--color-muted)]">{e.data.impact}</p>
-                {e.data.details.length > 0 && (
-                  <ul class="mt-4 flex flex-col gap-2">
-                    {e.data.details.map((d) => (
-                      <li class="flex gap-2.5 text-sm leading-relaxed text-[var(--color-faint)]">
-                        <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-[var(--color-accent)]" />
-                        <span>{d}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                {e.data.stack.length > 0 && (
-                  <ul class="mt-4 flex flex-wrap gap-1.5">
-                    {e.data.stack.map((tech) => (
-                      <li class="rounded-md bg-[var(--color-surface-2)] px-2 py-0.5 text-xs text-[var(--color-muted)]">{tech}</li>
-                    ))}
-                  </ul>
-                )}
+              class="absolute left-0 top-[1.45rem] grid h-4 w-4 place-items-center rounded-full ring-4 ring-[var(--color-bg)] sm:h-[18px] sm:w-[18px]"
+              style={`background:${dotColor[e.data.type]}; box-shadow:0 0 0 1px ${dotColor[e.data.type]}, 0 0 16px -2px ${dotColor[e.data.type]};`}
+              aria-hidden="true"
+            >
+              <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-bg)]/60" />
+            </span>
+
+            <button
+              data-entry={i}
+              class="timeline-card group w-full rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5 text-left shadow-[0_12px_34px_-22px_rgba(0,0,0,0.6)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--color-accent)]/50 focus-visible:border-[var(--color-accent)]"
+            >
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class:list={["rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1", typeClass[e.data.type]]}>
+                  {typeLabel[e.data.type]}
+                </span>
+                <span class="font-mono text-sm text-[var(--color-faint)]">{e.data.year}</span>
               </div>
-            </details>
+              <h3 class="mt-2.5 text-lg font-semibold text-[var(--color-fg)]">{e.data.title}</h3>
+              <p class="mt-1 text-sm leading-relaxed text-[var(--color-muted)]">{e.data.subtitle}</p>
+              {e.data.stack.length > 0 && (
+                <ul class="mt-3.5 flex flex-wrap gap-1.5">
+                  {e.data.stack.slice(0, 5).map((tech) => (
+                    <li class="rounded-md bg-[var(--color-surface-2)] px-2 py-0.5 text-xs text-[var(--color-muted)]">{tech}</li>
+                  ))}
+                </ul>
+              )}
+              <span class="mt-3 inline-block text-xs font-medium text-[var(--color-accent)] opacity-0 transition-opacity group-hover:opacity-100">View details →</span>
+            </button>
           </li>
         ))
-      }
-    </ol>
-
-    <!-- ============================================================
-         DESKTOP / lg+ : horizontal alternating axis. Cards above/below
-         a center line; click a card to open its detail modal.
-         Reads left → right oldest → newest, so the axis sorts ascending
-         (opposite of the "most recent first" mobile list above).
-         ============================================================ -->
-    <ol class="relative hidden lg:flex lg:items-stretch">
-      <!-- center axis line -->
-      <span class="pointer-events-none absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-[var(--color-border)]" aria-hidden="true"></span>
-      {
-        [...entries].reverse().map((e, i) => {
-          const above = i % 2 === 0;
-          return (
-            <li class="flex flex-1 flex-col px-2">
-              {/* TOP half: card if above, else empty spacer */}
-              <div class="flex h-44 flex-col justify-end pb-3">
-                {above && (
-                  <button data-entry={i} class="timeline-card group rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 text-left transition-all duration-200 hover:-translate-y-1 hover:border-[var(--color-accent)]/60 focus-visible:border-[var(--color-accent)]">
-                    <div class="flex flex-wrap items-center gap-2">
-                      <span class:list={["rounded-full px-2 py-0.5 text-[0.65rem] font-semibold ring-1", typeClass[e.data.type]]}>{typeLabel[e.data.type]}</span>
-                      <span class="font-mono text-xs text-[var(--color-faint)]">{e.data.year}</span>
-                    </div>
-                    <h3 class="mt-2 text-sm font-semibold leading-snug text-[var(--color-fg)]">{e.data.title}</h3>
-                    <span class="mt-2 inline-block text-xs font-medium text-[var(--color-accent)] opacity-0 transition-opacity group-hover:opacity-100">View details →</span>
-                  </button>
-                )}
-              </div>
-              {/* DOT on the axis */}
-              <div class="flex h-4 items-center justify-center">
-                <span class:list={["z-10 h-4 w-4 rounded-full ring-4 ring-[var(--color-bg)]", dotClass(e)]} aria-hidden="true"></span>
-              </div>
-              {/* BOTTOM half: card if below, else empty spacer */}
-              <div class="flex h-44 flex-col justify-start pt-3">
-                {!above && (
-                  <button data-entry={i} class="timeline-card group rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 text-left transition-all duration-200 hover:-translate-y-1 hover:border-[var(--color-accent)]/60 focus-visible:border-[var(--color-accent)]">
-                    <div class="flex flex-wrap items-center gap-2">
-                      <span class:list={["rounded-full px-2 py-0.5 text-[0.65rem] font-semibold ring-1", typeClass[e.data.type]]}>{typeLabel[e.data.type]}</span>
-                      <span class="font-mono text-xs text-[var(--color-faint)]">{e.data.year}</span>
-                    </div>
-                    <h3 class="mt-2 text-sm font-semibold leading-snug text-[var(--color-fg)]">{e.data.title}</h3>
-                    <span class="mt-2 inline-block text-xs font-medium text-[var(--color-accent)] opacity-0 transition-opacity group-hover:opacity-100">View details →</span>
-                  </button>
-                )}
-              </div>
-            </li>
-          );
-        })
       }
     </ol>
   </section>
@@ -173,7 +117,7 @@ const dotClass = (e: (typeof entries)[number]) =>
     type="application/json"
     id="timeline-data"
     set:html={JSON.stringify(
-      [...entries].reverse().map((e) => ({
+      entries.map((e) => ({
         type: e.data.type,
         typeLabel: typeLabel[e.data.type],
         typeClass: typeClass[e.data.type],
