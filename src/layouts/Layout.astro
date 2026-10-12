@@ -11,8 +11,8 @@ interface Props {
 }
 
 const {
-  title = "Artem Zagaynov | Full-stack Developer",
-  description = "Full-stack developer crafting fast, responsive experiences across the web.",
+  title = "Artem Zagaynov | Software Engineer",
+  description = "Artem Zagaynov is a software engineer in Sacramento, CA. He ships .NET and Angular features for state agencies at HEART4Victims and builds tools with LLMs in the loop.",
   image = "/og.png",
 } = Astro.props;
 
@@ -34,6 +34,7 @@ const ogImage = new URL(image, Astro.site);
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Artem Zagaynov" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />

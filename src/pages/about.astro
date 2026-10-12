@@ -1,20 +1,74 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-const services = [
-  { title: "Web Development", body: "Full-stack applications and APIs." },
-  { title: "AI Integration", body: "LLM-powered features and tooling." },
-  { title: "Systems & Tooling", body: "Automation that makes work seamless." },
+// Mirrors the Experience section of the résumé (public/Artem-Zagaynov-Resume.pdf).
+const experience = [
+  {
+    role: "Integration & QA Engineer (VCPMS)",
+    company: "HEART4Victims",
+    place: "Sacramento, CA",
+    dates: "Nov 2024 – Present",
+    blurb:
+      "HEART4Victims builds VCPMS, a multi-tenant case management platform state agencies use to process crime victim compensation claims.",
+    bullets: [
+      "Built and shipped the Navigator Services Tracker for Alaska State Troopers' victim navigators end to end, from design calls to production (Angular 18, .NET 8, ABP, EF Core, Azure SQL)",
+      "Drove 130+ VCPMS bugs to resolution, including root cause fixes for claim saves silently deleting data and letter totals double counting voided payments",
+      "Run production support and UAT with Oklahoma state staff three mornings a week; brought 26 letter templates in line with the agency's originals",
+      "Developed and maintained Playwright integration and end to end suites across multi-tenant Angular apps and .NET Core services: OAuth/JWT auth, document management, payments",
+      "Utilized Azure DevOps Pipelines for CI/CD automated testing and release management",
+    ],
+  },
+  {
+    role: "Full-Stack Intern",
+    company: "Poseidon Aerospace",
+    place: "San Francisco, CA (hybrid)",
+    dates: "Oct 2023 – Nov 2024",
+    blurb:
+      "Startup developing unmanned seaplane drones for long range maritime cargo and defense missions.",
+    bullets: [
+      "Built RESTful APIs to integrate flight telemetry systems with centralized databases (Node.js, Express, SQL)",
+      "Developed Python scripts for telemetry monitoring and automation in Linux based environments (Grafana, Azure Monitor)",
+      "Contributed to containerized deployments (Docker) and CI/CD workflows for UAV flight dashboards and APIs",
+    ],
+  },
+  {
+    role: "Full-Stack Intern (VCPMS)",
+    company: "HEART4Victims",
+    place: "Sacramento, CA",
+    dates: "Jun 2022 – Sep 2023",
+    blurb: "",
+    bullets: [
+      "Contributed to building an online claim application form that guided users step by step and validated entered data. Result: fewer incomplete applications. (ASP.NET Core, Angular, SQL)",
+      "Helped develop APIs to send approved payments to the state's finance software, removing double entry. (ASP.NET Core, SQL)",
+      "Assisted with adding a secure messaging feature for claimants and staff. (SignalR)",
+    ],
+  },
 ];
 
-const process = [
-  { title: "Discover", body: "Research, gather requirements, and define scope." },
-  { title: "Build", body: "Iterate quickly with rapid prototypes." },
-  { title: "Launch", body: "Deploy, monitor, and continuously improve." },
+// Mirrors the Skills section of the résumé.
+const skills = [
+  { group: "Languages", items: ["C#", "TypeScript/JavaScript", "Python", "SQL", "Go", "Swift"] },
+  {
+    group: "Backend & APIs",
+    items: [".NET 8 / .NET Core", "ASP.NET Core", "ABP", "EF Core", "REST APIs", "SignalR", "OAuth2/OpenID Connect", "JWT"],
+  },
+  { group: "Frontend", items: ["Angular 18", "React", "SwiftUI"] },
+  {
+    group: "Cloud & DevOps",
+    items: ["Azure (App Service, Azure SQL, Key Vault)", "Azure DevOps Pipelines", "Docker", "CI/CD", "Linux"],
+  },
+  { group: "Testing", items: ["Playwright", "Integration and E2E automation", "Regression testing", "pytest"] },
+  {
+    group: "AI & Tools",
+    items: ["Claude API", "Model Context Protocol (MCP)", "Git/GitHub", "JIRA", "Grafana"],
+  },
 ];
 ---
 
-<Layout title="About | Artem Zagaynov">
+<Layout
+  title="About | Artem Zagaynov"
+  description="Experience, skills, and education for Artem Zagaynov, a software engineer at HEART4Victims in Sacramento, CA."
+>
   <section class="container-page py-16 sm:py-24">
     <!-- Intro -->
     <div class="flex flex-col items-start gap-8 sm:flex-row sm:items-center">
@@ -23,54 +77,97 @@ const process = [
         alt="Artem Zagaynov"
         width="180"
         height="180"
-        class="h-44 w-44 shrink-0 rounded-full object-cover object-top ring-1 ring-[var(--color-border)]"
+        class="h-36 w-36 shrink-0 rounded-full object-cover object-top ring-1 ring-[var(--color-border)] sm:h-44 sm:w-44"
       />
       <div>
         <h1 class="section-heading text-3xl sm:text-4xl">Hi, I'm Artem</h1>
-        <p class="mt-4 max-w-xl text-lg text-[var(--color-muted)]">
-          I'm a developer who loves crafting polished user experiences and
-          solving real-world problems with code, from AI-powered tools to
-          systems that make everyday workflows feel seamless.
+        <p class="mt-4 max-w-2xl text-lg text-[var(--color-muted)]">
+          I'm a software engineer in Sacramento. At HEART4Victims I ship .NET
+          and Angular features for state agencies on VCPMS, the platform they
+          use to process crime victim compensation claims.
         </p>
-        <p class="mt-4 max-w-xl text-[var(--color-faint)]">
-          A lot of my work fits one theme: building a personal system of tools I
-          actually use (a job tracker, a training coach, and more on the way),
-          each solving a real problem in my own life, and getting better
-          because I'm the one who depends on it.
+        <p class="mt-4 max-w-2xl text-[var(--color-faint)]">
+          Outside of work I build tools with LLMs in the loop, like a job
+          tracker that reads my email and keeps itself up to date.
         </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/Artem-Zagaynov-Resume.pdf" download class="btn-primary">
+            Download résumé
+          </a>
+          <a href="/contact" class="btn-secondary">Get in touch</a>
+        </div>
       </div>
     </div>
 
-    <!-- Services -->
+    <!-- Experience -->
     <div class="mt-20" data-reveal>
-      <h2 class="section-heading mb-8">What I do</h2>
-      <div class="grid gap-5 sm:grid-cols-3">
+      <h2 class="section-heading mb-8">Experience</h2>
+      <ol class="flex flex-col gap-5">
         {
-          services.map((s) => (
-            <div class="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
-              <h3 class="text-lg font-semibold">{s.title}</h3>
-              <p class="mt-2 text-sm text-[var(--color-muted)]">{s.body}</p>
-            </div>
+          experience.map((job) => (
+            <li class="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5 sm:p-6">
+              <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                <h3 class="text-lg font-semibold text-[var(--color-fg)]">{job.role}</h3>
+                <span class="shrink-0 font-mono text-sm text-[var(--color-faint)]">{job.dates}</span>
+              </div>
+              <p class="mt-1 text-sm text-[var(--color-muted)]">
+                <span class="font-medium text-[var(--color-fg)]">{job.company}</span>
+                <span class="text-[var(--color-faint)]"> · {job.place}</span>
+              </p>
+              {job.blurb && (
+                <p class="mt-3 text-sm leading-relaxed text-[var(--color-muted)]">{job.blurb}</p>
+              )}
+              <ul class="mt-4 flex flex-col gap-2">
+                {job.bullets.map((b) => (
+                  <li class="flex gap-2.5 text-sm leading-relaxed text-[var(--color-muted)]">
+                    <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-[var(--color-accent)]" aria-hidden="true" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </li>
           ))
         }
-      </div>
+      </ol>
     </div>
 
-    <!-- Process -->
+    <!-- Skills -->
     <div class="mt-20" data-reveal>
-      <h2 class="section-heading mb-8">My Process</h2>
-      <div class="grid gap-5 sm:grid-cols-3">
+      <h2 class="section-heading mb-8">Skills</h2>
+      <dl class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {
-          process.map((p, i) => (
-            <div class="rounded-[var(--radius-card)] border border-[var(--color-border)] p-6">
-              <span class="text-sm font-mono text-[var(--color-accent)]">
-                0{i + 1}
-              </span>
-              <h3 class="mt-2 text-lg font-semibold">{p.title}</h3>
-              <p class="mt-2 text-sm text-[var(--color-muted)]">{p.body}</p>
+          skills.map((s) => (
+            <div class="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5 sm:p-6">
+              <dt class="text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-accent)]">
+                {s.group}
+              </dt>
+              <dd class="mt-3">
+                <ul class="flex flex-wrap gap-1.5">
+                  {s.items.map((item) => (
+                    <li class="rounded-md bg-[var(--color-surface-2)] px-2 py-0.5 text-xs text-[var(--color-muted)]">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </dd>
             </div>
           ))
         }
+      </dl>
+    </div>
+
+    <!-- Education -->
+    <div class="mt-20" data-reveal>
+      <h2 class="section-heading mb-8">Education</h2>
+      <div class="rounded-[var(--radius-card)] border border-[var(--color-border)] bg-[var(--color-surface)] p-5 sm:p-6">
+        <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+          <h3 class="text-lg font-semibold text-[var(--color-fg)]">B.S. Computer Science</h3>
+          <span class="shrink-0 font-mono text-sm text-[var(--color-faint)]">Sep 2021 – June 2025</span>
+        </div>
+        <p class="mt-1 text-sm text-[var(--color-muted)]">
+          <span class="font-medium text-[var(--color-fg)]">University of California, Santa Cruz</span>
+          <span class="text-[var(--color-faint)]"> · GPA 3.5</span>
+        </p>
       </div>
     </div>
   </section>

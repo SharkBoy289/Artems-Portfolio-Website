@@ -1,6 +1,6 @@
 ---
 title: Digital PO Box
-summary: An Angular 18 app with server-side rendering and standalone login/register components, built to learn enterprise-style frontend architecture and SSR.
+summary: An Angular 18 app with server side rendering and standalone login and register components. I built it to try out SSR and the newer standalone component model.
 status: in-progress
 year: "2024"
 tags: ["Angular 18", "TypeScript", "SSR", "Express", "RxJS"]
@@ -8,33 +8,22 @@ featured: false
 order: 6
 ---
 
-## The problem
+## Why I built it
 
-Most of my web work is in React-family stacks, so I built this to get real
-experience with **Angular**, the framework a lot of enterprise teams actually
-run, and specifically with **server-side rendering**, which changes how an app
-is structured and shipped.
+I use Angular at work, and I wanted a side project to try two newer parts of it:
+standalone components and server side rendering. SSR changes how an app is
+structured and shipped, so I wanted to see that firsthand.
 
-## What's technically interesting
+## How it works
 
-- **Angular 18 with standalone components.** The app uses the modern
-  standalone-component model (no NgModules), with dedicated `login` and
-  `register` components and a typed routing setup.
-- **Server-side rendering out of the box.** Configured with `@angular/ssr` and an
-  **Express** server entry, so pages render on the server first. This is a
-  meaningfully different build and runtime model than a pure SPA.
-- **TypeScript end to end** with `RxJS` for reactive data flow, the idiomatic
-  Angular way to handle async streams.
-- **Testing scaffolding in place.** Karma + Jasmine are wired up, reflecting how
-  Angular projects are tested in practice.
+- **Standalone components.** The app uses the standalone model with no
+  NgModules, with dedicated `login` and `register` components and typed routing.
+- **Server side rendering.** It's set up with `@angular/ssr` and an Express
+  server entry, so pages render on the server first.
+- **TypeScript throughout,** with `RxJS` for async data.
+- **Tests wired up** with Karma and Jasmine.
 
 ## Stack
 
 Angular 18 (standalone components) · TypeScript · `@angular/ssr` + Express ·
 RxJS · Karma / Jasmine.
-
-## What I took from it
-
-Deliberate **breadth**: getting fluent in a second major frontend ecosystem and
-understanding SSR from the framework's perspective, not just from Next.js's. It
-complements the React/Astro work elsewhere in this portfolio.

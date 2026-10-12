@@ -1,9 +1,9 @@
 ---
 title: Gym Coach App
-summary: A personal-training companion that plans workouts, tracks progress, and adapts programming, built as a tool I use every day.
+summary: A training companion that plans my workouts, tracks progress, and adjusts the program as I go. I'm building it as a tool I use every day.
 status: in-progress
 year: "2026"
-tags: ["TypeScript", "Mobile / App", "Health data"]
+tags: ["Personal tool", "Fitness"]
 featured: false
 cover: "/projects/gym-coach.svg"
 order: 4
@@ -11,28 +11,19 @@ order: 4
 
 ## The problem
 
-Most workout trackers are glorified spreadsheets. They log what you did but
-never tell you what to do next. They get abandoned in a week. I wanted a coach
-that plans sessions, logs lifts in as few taps as possible, and **adapts the
-program based on real performance**.
+Most workout trackers log what you did and stop there. They never tell you what
+to do next, and they're easy to abandon after a week. I wanted a coach that plans
+the session, makes logging quick, and adjusts the program based on how training
+actually went.
 
-## What's technically interesting
+## What I'm building
 
-- **Adaptive programming as logic, not a static plan.** Progressive overload,
-  deloads, and missed-session handling are modelled explicitly, so next
-  session's targets are derived from recent history.
-- **Fast capture.** Logging sets/reps/weight is optimized for minimal taps,
-  because friction is why tracking apps die.
-- **A seamless data loop (planned).** Integration with Apple Health / wearables
-  so training data flows in and out without manual entry.
-
-## Stack
-
-TypeScript · mobile-first UI · local-first data · (planned) Apple Health
-integration.
+- **A program that adapts.** Progressive overload, deloads, and missed sessions
+  are handled in code, so the next session's targets come from recent history.
+- **Quick logging.** Recording sets, reps, and weight should take as few taps as
+  possible, since friction is what kills tracking apps.
 
 ## Status
 
-**In progress.** Part of a broader push to build personal tools that make my
-own systems feel seamless. It'll grow into a full case study as the app takes
-shape.
+In progress. It's one of the personal tools I build to make my own routines run
+smoother.

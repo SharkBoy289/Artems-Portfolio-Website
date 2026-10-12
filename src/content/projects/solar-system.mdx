@@ -1,6 +1,6 @@
 ---
 title: 3D Solar System
-summary: An interactive 3D solar system built in Three.js, featuring a textured sun and four planets orbiting at different speeds with live GUI controls to toggle each one.
+summary: An interactive 3D solar system in Three.js, with a textured sun and four planets orbiting at different speeds, plus live controls to toggle each orbit.
 status: shipped
 year: "2024"
 tags: ["Three.js", "WebGL", "Next.js", "React", "3D Graphics"]
@@ -8,35 +8,30 @@ featured: false
 order: 5
 ---
 
-## The problem
+## Why I built it
 
-I wanted to learn real-time **3D graphics** by building something that actually
-moves, rather than reading about it. A solar system is a great forcing function:
-textured spheres, a scene graph, nested rotations, and an animation loop that
-has to stay smooth.
+I wanted to learn real time 3D graphics by building something that moves. A
+solar system covers a lot of ground: textured spheres, a scene graph, nested
+rotations, and an animation loop that has to stay smooth.
 
-## What's technically interesting
+## How it works
 
-- **A real Three.js scene graph.** The sun, four planets, and their orbital
-  systems are organized as nested `THREE.Group`s, so rotating a parent group
-  carries its planet around the sun. This is the classic, correct way to model
-  orbits with a scene graph.
-- **Differentiated orbital motion.** Each planet orbits at a different speed
-  derived from an `EARTH_YEAR` constant (Mercury fastest, Mars slowest), driven
-  by a `requestAnimationFrame` loop targeting 60fps.
-- **Reusable OOP abstractions.** `Planet` and `Rotation` classes encapsulate
-  geometry, texture loading, and spin, so adding a body is a couple of lines and
-  the renderer code stays clean.
-- **Live controls.** A `dat.gui` panel toggles the visibility of each planet's
-  orbit at runtime, making the scene something you explore, not just watch.
+- **A Three.js scene graph.** The sun, the planets, and their orbits are nested
+  `THREE.Group`s, so rotating a parent group carries its planet around the sun.
+- **Different orbit speeds.** Each planet's speed comes from an `EARTH_YEAR`
+  constant (Mercury fastest, Mars slowest), driven by a `requestAnimationFrame`
+  loop.
+- **Small reusable classes.** `Planet` and `Rotation` handle geometry, texture
+  loading, and spin, so adding a new body takes a couple of lines.
+- **Live controls.** A `dat.gui` panel turns each planet's orbit on and off while
+  the scene runs.
 
 ## Stack
 
-Three.js / WebGL · Next.js + React shell · texture-mapped `SphereGeometry` ·
-`dat.gui` runtime controls.
+Three.js / WebGL · Next.js + React · texture mapped `SphereGeometry` ·
+`dat.gui`.
 
 ## What I took from it
 
-My first real dive into the **3D / graphics** side of the web: scene graphs,
-texture loading, and animation loops. It's the project that pairs thematically
-with the interactive data-visualization work I do now.
+My first real project on the 3D side of the web: scene graphs, texture loading,
+and animation loops.

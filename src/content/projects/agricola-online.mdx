@@ -1,44 +1,36 @@
 ---
-title: Agricola Online
-summary: A real-time multiplayer adaptation of the board game Agricola, built on a Go game server with WebSockets and Redis-backed state and orchestrated on Kubernetes to scale game rooms on demand.
+title: Farmland
+summary: An online multiplayer version of the board game Agricola, written in Go. It has an immutable rules engine and a bot that plays by simulating real moves, tuned over 150 simulated games.
 status: in-progress
 year: "2026"
-tags: ["Go", "WebSockets", "Redis", "Kubernetes", "Docker", "Microservices"]
+tags: ["Go", "Rules engine", "Game AI"]
 featured: true
-cover: "/projects/agricola-online.svg"
-order: 2
+cover: "/projects/farmland.svg"
+order: 1
 ---
 
-## The problem
+## The idea
 
-Agricola is a turn-based worker-placement game for up to five players. I wanted
-to learn distributed systems on a problem that **genuinely needs** them, not a
-toy that's containerized for show. A session-based, room-per-match game is
-exactly that problem.
+Agricola is a turn based worker placement board game. Its rules are dense:
+actions, a resource economy, harvests, and end game scoring all interact. I
+wanted to see if I could model all of that cleanly and then build a bot that
+plays it well.
 
-## What's technically interesting
+## How it works
 
-- **A concurrency model that fits.** One goroutine drives the authoritative
-  game loop per active room, with channels for player actions and broadcasts
-  for state changes. It's the kind of workload Go is built for.
-- **A real rules engine.** Agricola's worker placement, resource economy,
-  harvest phases, and end-game scoring are modelled as a **state machine** with
-  pure transition functions (`apply(action, state) → state`), making it easy to
-  test and easy to snapshot.
-- **State that survives pod churn.** Game state is snapshotted to **Redis**
-  after each committed turn, so any pod can serve a room and reconnections
-  survive a restart.
-- **Orchestration with a reason to exist.** Game-server pods scale
-  **horizontally** on Kubernetes with player demand. The orchestration earns
-  its place because the workload is naturally many independent sessions.
+- **An immutable rules engine.** Every action takes a game state and returns a
+  new one. Nothing gets mutated in place, so each rule is easy to test on its
+  own and any game can be replayed from its moves.
+- **A bot that plays real moves.** The bot picks its move by simulating real
+  moves through the same engine the players use. I tuned it over 150 simulated
+  games.
+- **A small server.** The whole thing runs as a single Go process, and clients
+  get game updates by long polling.
 
 ## Stack
 
-Go game server · WebSocket protocol (authoritative server, versioned state) ·
-Redis for room/session state · Docker · Kubernetes (Deployments + HPA).
+Go.
 
 ## Status
 
-**In progress.** The full architecture and build milestones are written up in
-the project's `docs/agricola-architecture.md`. I'm building it specifically to
-deepen my Go and Kubernetes skills on a problem where they're the right tools.
+In progress. The rules engine and the bot are where most of the work has gone.
