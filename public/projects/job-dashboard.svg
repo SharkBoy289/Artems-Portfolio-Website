@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" role="img" aria-label="Job Dashboard pipeline: Gmail to Claude to SQLite to MCP and macOS widget">
+  <rect width="800" height="450" fill="#171a21"/>
+  <!-- pipeline: labeled mail -> structured classification -> event store -> two readers -->
+  <g font-family="ui-sans-serif, system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="15" fill="#e6e8ee" text-anchor="middle">
+    <rect x="40" y="185" width="130" height="80" rx="10" fill="#171a21" stroke="#2a2f3a" stroke-width="2"/>
+    <text x="105" y="220">Gmail</text>
+    <text x="105" y="242" font-size="12" fill="#8b93a3">labeled mail</text>
+
+    <rect x="225" y="185" width="150" height="80" rx="10" fill="#c8825a" fill-opacity="0.18" stroke="#c8825a" stroke-width="2.5"/>
+    <text x="300" y="220">Claude</text>
+    <text x="300" y="242" font-size="12" fill="#8b93a3">validated schema</text>
+
+    <rect x="430" y="185" width="140" height="80" rx="10" fill="#171a21" stroke="#2a2f3a" stroke-width="2"/>
+    <text x="500" y="220">SQLite</text>
+    <text x="500" y="242" font-size="12" fill="#8b93a3">event history</text>
+
+    <rect x="625" y="110" width="140" height="70" rx="10" fill="#171a21" stroke="#2a2f3a" stroke-width="2"/>
+    <text x="695" y="142">MCP server</text>
+    <text x="695" y="162" font-size="12" fill="#8b93a3">any Claude client</text>
+
+    <rect x="625" y="270" width="140" height="70" rx="10" fill="#171a21" stroke="#2a2f3a" stroke-width="2"/>
+    <text x="695" y="302">macOS widget</text>
+    <text x="695" y="322" font-size="12" fill="#8b93a3">SwiftUI</text>
+  </g>
+  <g stroke="#8b93a3" stroke-width="2" fill="none">
+    <path d="M170 225 H219"/><path d="M375 225 H424"/>
+    <path d="M570 215 C600 215 600 145 619 145"/><path d="M570 235 C600 235 600 305 619 305"/>
+  </g>
+  <g fill="#8b93a3">
+    <path d="M219 220 l8 5 l-8 5z"/><path d="M424 220 l8 5 l-8 5z"/>
+    <path d="M619 140 l8 5 l-8 5z"/><path d="M619 300 l8 5 l-8 5z"/>
+  </g>
+</svg>
