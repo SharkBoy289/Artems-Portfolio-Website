@@ -1,0 +1,33 @@
+---
+title: Feed the Blob
+summary: A multiplayer Roblox game where you grow a blob by grabbing food, steal snacks from other players, and fuse blobs into new creatures. Built in Roblox Studio with Luau, mobile first.
+status: in-progress
+year: "2026"
+tags: ["Roblox", "Luau", "Multiplayer", "Game design"]
+featured: false
+cover: "/projects/feed-the-blob.svg"
+order: 3
+---
+
+## The idea
+
+Grow a squishy blob from bite size to building size. Food spawns around a park,
+players race to grab it, and anyone can slap a rival to steal what they're
+carrying. Feeding unlocks mutations, and fusing two blobs makes a new creature
+that goes into your personal Blobdex.
+
+## How it's built
+
+I'm building it with a collaborator, Ed, in Roblox Studio with Luau.
+
+- **Server-authoritative game loop.** Currency, feeding, pen ownership and
+  purchases are decided on the server, and every client request is validated,
+  so a modified client can't hand itself food or coins.
+- **Growth capped by pen size.** Your blob physically grows on the map until it
+  fills its pen, which makes pen upgrades the main progression path.
+- **Mobile-first controls** for short sessions, since most of the audience
+  plays on phones.
+
+## Status
+
+In development. The release is gated on playtests rather than a fixed date.
